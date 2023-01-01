@@ -1,8 +1,9 @@
 import React from 'react';
+import { SignIn } from '../features';
 
 function LogIn() {
   return (
-    <div>LogIn</div>
+    <SignIn />
   );
 }
 
