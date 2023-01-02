@@ -1,5 +1,6 @@
 import { Auth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useState, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { defaultAvatar } from '../../../utils/DefaultAvatar';
 import { UserInputsDataType, UserProps } from '../../../utils/Types/registerTypes';
@@ -7,6 +8,7 @@ import useAddUser from './useAddUser';
 
 const useSignUpWithEmailAndPassword = (auth: Auth) => {
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
   const { addUserToDatabase } = useAddUser();
 
   const signUpWithEmailAndPassword = async (e:FormEvent<HTMLFormElement>) => {
@@ -31,6 +33,7 @@ const useSignUpWithEmailAndPassword = (auth: Auth) => {
         displayName: username,
         photoURL: defaultAvatar,
       });
+      navigate('/');
       //   add user to database
       const userData:UserProps = {
         uid: currentUser.uid as string,

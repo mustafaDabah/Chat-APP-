@@ -1,8 +1,15 @@
 import create from 'zustand';
 
 // define the store
-export const useStore = create((set) => ({
-  votes: 0,
-  addVotes: () => set((state) => ({ votes: state.votes + 1 })),
-  subtractVotes: () => set((state) => ({ votes: state.votes - 1 })),
+interface State {
+  currentUser:object | null,
+}
+
+interface Action {
+  setCurrentUser:(currentUser: State['currentUser']) => void
+}
+
+export const useStore = create<State & Action>((set) => ({
+  currentUser: {},
+  setCurrentUser: (user) => set({ currentUser: user }),
 }));

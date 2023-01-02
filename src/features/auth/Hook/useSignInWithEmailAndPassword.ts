@@ -1,9 +1,12 @@
 import { Auth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useCallback, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserInputsDataType } from '../../../utils/Types/registerTypes';
 
 const useSignInWithEmailAndPassword = (auth: Auth) => {
+  const navigate = useNavigate();
+
   const handleSignInWithEmailAndPassword = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputsData = new FormData(e.currentTarget);
@@ -18,8 +21,8 @@ const useSignInWithEmailAndPassword = (auth: Auth) => {
     const { password, email } = userInputsData;
 
     try {
-      const { user } = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate('/');
     } catch (err) {
       toast.error((err as Error).message);
     }

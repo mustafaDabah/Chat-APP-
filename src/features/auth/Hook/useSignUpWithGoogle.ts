@@ -1,5 +1,6 @@
 import { Auth, signInWithPopup } from 'firebase/auth';
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { provider } from '../../../firebase';
 import { UserProps } from '../../../utils/Types/registerTypes';
@@ -9,6 +10,7 @@ type SignUpWithGoogle = () => void;
 
 const useSignUpWithGoogle = (auth: Auth): { signUpWithGoogle: SignUpWithGoogle } => {
   const { addUserToDatabase } = useAddUser();
+  const navigate = useNavigate();
 
   const signUpWithGoogle = useCallback(async () => {
     try {
@@ -21,6 +23,7 @@ const useSignUpWithGoogle = (auth: Auth): { signUpWithGoogle: SignUpWithGoogle }
         photoURL: currentUser.photoURL as string,
       };
       addUserToDatabase(userData);
+      navigate('/');
     } catch (error) {
       toast.error((error as Error).message);
     }

@@ -1,9 +1,16 @@
 import React from 'react';
+import { signOut } from 'firebase/auth';
 import existIcon from '../../../../assets/images/exist.svg';
 import verticalMenuIcon from '../../../../assets/images/face.jpg';
 import { Avatar, ButtonWithIcon } from '../../../../PublicComponents';
+import { useStore } from '../../../../store/store';
+import { auth } from '../../../../firebase';
 
 function Navbar() {
+  const currentUser = useStore((state) => state.currentUser);
+
+  console.log(currentUser);
+
   return (
     <nav className=" bg-white shadow-sm">
       <div className="container">
@@ -19,6 +26,7 @@ function Navbar() {
           <ButtonWithIcon
             icon={existIcon}
             name="exist icon"
+            handelClick={() => signOut(auth)}
           />
         </div>
       </div>
