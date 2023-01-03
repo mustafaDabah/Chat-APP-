@@ -2,19 +2,32 @@ import React from 'react';
 import personImage from '../../../../assets/images/face.jpg';
 import { Avatar } from '../../../../PublicComponents';
 
-function User() {
+interface UserProps {
+  image:string | undefined
+  name: string | undefined
+  lastMessage?: string | undefined
+  time?:string | undefined
+}
+
+function User({ image, name, lastMessage, time }:UserProps) {
   return (
     <div className="flex items-center justify-between border-b-[2px] border-third py-3">
       <button type="button" className="flex justify-start items-center outline-none">
-        <Avatar imageSrc={personImage} name="test" />
+        <Avatar imageSrc={image} name={name} />
         <div className="ml-5 text-left">
-          <h3 className="text-white text-xl">Mustafa Dabah</h3>
-          <p className="text-gray-400 italic truncate  w-40">Lorem ipsum doloripsum do Lorem ipsum doloripsumLorem ipsum doloripsumlor sit.</p>
+          <h3 className="text-white text-xl">{name}</h3>
+          <p className="text-gray-400 italic truncate  w-40">{lastMessage}</p>
         </div>
       </button>
-      <p className="text-gray-200">9:30pm</p>
+      <p className="text-gray-200">{time}</p>
     </div>
   );
 }
 
+User.defaultProps = {
+  time: '9:30pm',
+  lastMessage: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, officia!',
+};
+
 export default User;
+

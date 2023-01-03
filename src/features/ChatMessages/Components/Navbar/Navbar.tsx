@@ -18,10 +18,10 @@ function Navbar() {
           <div className="flex items-center">
             {/* --user info-- */}
             <Avatar
-              imageSrc={verticalMenuIcon}
-              name="mustafa dabah"
+              imageSrc={currentUser?.photoURL}
+              name={currentUser?.displayName}
             />
-            <h3 className="text-gray-600 text-xl ml-3">mustafa dabah</h3>
+            <h3 className="text-gray-600 text-xl ml-3">{currentUser?.displayName}</h3>
           </div>
           <ButtonWithIcon
             icon={existIcon}

@@ -3,7 +3,7 @@ import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { defaultAvatar } from '../../../utils/DefaultAvatar';
-import { UserInputsDataType, UserProps } from '../../../utils/Types/registerTypes';
+import { UserInputsDataType, User } from '../../../utils/Types/registerTypes';
 import useAddUser from './useAddUser';
 
 const useSignUpWithEmailAndPassword = (auth: Auth) => {
@@ -35,7 +35,7 @@ const useSignUpWithEmailAndPassword = (auth: Auth) => {
       });
       navigate('/');
       //   add user to database
-      const userData:UserProps = {
+      const userData:User = {
         uid: currentUser.uid as string,
         displayName: currentUser.displayName as string,
         email: currentUser.email as string,

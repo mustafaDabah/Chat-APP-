@@ -1,8 +1,9 @@
 import create from 'zustand';
+import { User } from '../utils/Types/registerTypes';
 
 // define the store
 interface State {
-  currentUser:object | null,
+  currentUser:User | null,
 }
 
 interface Action {

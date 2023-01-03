@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import editIcon from '../../../../assets/images/edit.svg';
 
-function UserInfo({ name, onSubmit }) {
+function UserInfo({ name: any, onSubmit: any }) {
   const [newName, setNewName] = useState(name);
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     setNewName(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     onSubmit(newName);
   };

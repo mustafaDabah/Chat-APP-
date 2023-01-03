@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Routes, Route } from 'react-router-dom';
 import { auth } from './firebase';
@@ -11,7 +11,7 @@ import PrivateRoute from './utils/PrivateRoute';
 function App() {
   const setCurrentUser = useStore((state) => state.setCurrentUser);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       console.log(user);

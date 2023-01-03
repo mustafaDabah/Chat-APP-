@@ -23,7 +23,8 @@
       }
     },
     "rules": {
-       // "ban-ts-ignore": true,
+      //  "ban-ts-ignore": true,
+      "@typescript-eslint/ban-ts-ignore": "off",
        "import/no-unresolved": "off",
        "jsx-a11y/label-has-associated-control": ["error", {
            "required": {
