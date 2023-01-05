@@ -1,9 +1,10 @@
+import { User } from 'firebase/auth';
 import create from 'zustand';
-import { User } from '../utils/Types/registerTypes';
+// import { User } from '../utils/Types/registerTypes';
 
 // define the store
 interface State {
-  currentUser:User | null,
+  currentUser:User,
 }
 
 interface Action {
@@ -11,6 +12,9 @@ interface Action {
 }
 
 export const useStore = create<State & Action>((set) => ({
-  currentUser: {},
+  currentUser: {
+    emailVerified: true,
+    isAnonymous: false,
+  } as User,
   setCurrentUser: (user) => set({ currentUser: user }),
 }));

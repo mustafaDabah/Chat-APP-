@@ -1,33 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { collection, DocumentData, getDocs } from 'firebase/firestore';
-import { db } from '../../../../firebase';
+import { DocumentData } from 'firebase/firestore';
+import React from 'react';
 import { User as UserTypes } from '../../../../utils/Types/registerTypes';
 import User from '../User/User';
-import { useStore } from '../../../../store/store';
 
-function UserList() {
-  const currentUser = useStore((state) => state.currentUser);
+interface UsersListProps {
+  users:DocumentData[]
+}
 
-  const [users, setUsers] = useState<DocumentData>([]);
-
-  useEffect(() => {
-    const getUsers = async () => {
-      const querySnapshot = await getDocs(collection(db, 'users'));
-      const usersQuery = querySnapshot.docs.map((doc) => doc.data());
-      setUsers(usersQuery);
-      console.log(usersQuery);
-      // querySnapshot.forEach((doc) => setUsers(doc.data()));
-    };
-
-    getUsers();
-  }, []);
-
-  console.log(users);
-
+function UserList({ users }:UsersListProps) {
   const displayUsers = users.map((user: UserTypes) => (
     <User
       image={user.photoURL}
       name={user.displayName}
+      uid={user.uid}
       key={user.uid}
     />
   ));
@@ -40,3 +25,4 @@ function UserList() {
 }
 
 export default UserList;
+export const UserListMemo = React.memo(UserList);

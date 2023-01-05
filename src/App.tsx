@@ -7,14 +7,20 @@ import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import { useStore } from './store/store';
 import PrivateRoute from './utils/PrivateRoute';
+import { User } from './utils/Types/registerTypes';
 
 function App() {
   const setCurrentUser = useStore((state) => state.setCurrentUser);
 
   useLayoutEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      console.log(user);
+      // const userData:User = {
+      //   uid: user?.uid as string,
+      //   displayName: user?.displayName as string,
+      //   email: user?.email as string,
+      //   photoURL: user?.photoURL as string,
+      // };
+      if (user) setCurrentUser(user);
     });
 
     return () => unsubscribe();
