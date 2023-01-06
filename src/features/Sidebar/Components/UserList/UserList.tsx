@@ -1,19 +1,34 @@
-import { DocumentData } from 'firebase/firestore';
-import React from 'react';
+import { doc, DocumentData, onSnapshot } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { db } from '../../../../firebase';
+import { useStore } from '../../../../store/store';
 import { User as UserTypes } from '../../../../utils/Types/registerTypes';
+import useGetUserChats from '../../Hooks/useGetUserChats';
 import User from '../User/User';
 
 interface UsersListProps {
   users:DocumentData[]
 }
 
+interface ChatType {
+  userInfo: {
+    photoURL: string ;
+    displayName: string;
+    uid: string;
+  };
+  lastMessage: string;
+}
+
 function UserList({ users }:UsersListProps) {
-  const displayUsers = users.map((user: UserTypes) => (
+  const chats = useGetUserChats();
+
+  const displayUsers = Object.entries(chats).map((user:[string, ChatType]) => (
     <User
-      image={user.photoURL}
-      name={user.displayName}
-      uid={user.uid}
-      key={user.uid}
+      image={user[1].userInfo.photoURL}
+      name={user[1].userInfo.displayName}
+      uid={user[1].userInfo.uid}
+      lastMessage={user[1].lastMessage}
+      key={user[1].userInfo.uid}
     />
   ));
 

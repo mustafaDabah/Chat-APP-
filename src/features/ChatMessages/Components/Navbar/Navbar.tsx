@@ -9,8 +9,6 @@ import { auth } from '../../../../firebase';
 function Navbar() {
   const currentUser = useStore((state) => state.currentUser);
 
-  console.log(currentUser);
-
   return (
     <nav className=" bg-white shadow-sm">
       <div className="container">

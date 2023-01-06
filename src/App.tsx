@@ -7,7 +7,6 @@ import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import { useStore } from './store/store';
 import PrivateRoute from './utils/PrivateRoute';
-import { User } from './utils/Types/registerTypes';
 
 function App() {
   const setCurrentUser = useStore((state) => state.setCurrentUser);

@@ -11,10 +11,8 @@ function PrivateRoute({ children }:PropsPrivateRoute) {
 
   if (!currentUser) {
     return <Navigate to="/login" />;
-  } else {
-    return children;
   }
-
+  return children;
 }
 export default PrivateRoute;
 

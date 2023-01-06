@@ -1,27 +1,60 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import React from 'react';
 import personImage from '../../../../assets/images/face.jpg';
 import { db } from '../../../../firebase';
 import { Avatar } from '../../../../PublicComponents';
 import { useStore } from '../../../../store/store';
+import { User as UserType } from '../../../../utils/Types/registerTypes';
 
 interface UserProps {
-  image:string | undefined
-  name: string | undefined
-  lastMessage?: string | undefined
-  time?:string | undefined
-  uid:string
+  image: string | null;
+  name: string;
+  uid: string;
+  lastMessage: string;
+  time?:Date
 }
 
 function User({ image, name, lastMessage, time, uid }:UserProps) {
-  const { currentUser } = useStore();
-  // @ts-ignore
-  const combinedId = currentUser.uid > uid ? currentUser.uid + user.uid : uid + currentUser.uid;
+  const { currentUser, setUserChat, setChatId } = useStore();
+  console.log(lastMessage);
+
+  const combinedId = currentUser.uid > uid ? currentUser.uid + uid : uid + currentUser.uid;
 
   const handleSelect = async () => {
     // check whether the group(chats in firestore) exists, if not create
     try {
       const res = await getDoc(doc(db, 'chats', combinedId));
+
+      if (!res.exists()) {
+        await setDoc(doc(db, 'chats', combinedId), { messages: [] });
+
+        await updateDoc(doc(db, 'userChats', currentUser.uid), {
+          [`${combinedId}.userInfo`]: {
+            uid,
+            displayName: name,
+            photoURL: image,
+          },
+          [`${combinedId}.data`]: serverTimestamp(),
+        });
+
+        await updateDoc(doc(db, 'userChats', uid), {
+          [`${combinedId}.userInfo`]: {
+            uid: currentUser.uid,
+            displayName: currentUser.displayName,
+            photoURL: currentUser.photoURL,
+          },
+          [`${combinedId}.date`]: serverTimestamp(),
+        });
+      }
+
+      setChatId(combinedId);
+      const userInfo:UserType = {
+        uid,
+        displayName: name,
+        photoURL: image,
+        lastMessage,
+      };
+      setUserChat(userInfo);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +64,7 @@ function User({ image, name, lastMessage, time, uid }:UserProps) {
 
   return (
     <div className="flex items-center justify-between border-b-[2px] border-third py-3">
-      <button type="button" className="flex justify-start items-center outline-none">
+      <button type="button" className="flex justify-start items-center outline-none" onClick={handleSelect}>
         <Avatar imageSrc={image} name={name} />
         <div className="ml-5 text-left">
           <h3 className="text-white text-xl">{name}</h3>
@@ -45,7 +78,6 @@ function User({ image, name, lastMessage, time, uid }:UserProps) {
 
 User.defaultProps = {
   time: '9:30pm',
-  lastMessage: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, officia!',
 };
 
 export default User;

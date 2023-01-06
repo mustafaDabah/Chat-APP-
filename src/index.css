@@ -22,4 +22,8 @@ body {
     background: #3c5c7a; 
     border-radius: 10px;
   }
+
+  .carousel-width {
+    width: 60px !important;
+  }
   

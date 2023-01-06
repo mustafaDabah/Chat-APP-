@@ -5,16 +5,21 @@ import create from 'zustand';
 // define the store
 interface State {
   currentUser:User,
+  selectUserChat:object,
+  chatId:string,
 }
 
 interface Action {
   setCurrentUser:(currentUser: State['currentUser']) => void
+  selectUserChat:(currentUser: State['selectUserChat']) => void
+  setChatId:(currentUser: State['chatId']) => void
 }
 
 export const useStore = create<State & Action>((set) => ({
-  currentUser: {
-    emailVerified: true,
-    isAnonymous: false,
-  } as User,
+  currentUser: {} as User,
   setCurrentUser: (user) => set({ currentUser: user }),
+  selectUserChat: {},
+  setUserChat: (user) => set({ selectUserChat: user }),
+  chatId: '',
+  setChatId: (id) => set({ chatId: id }),
 }));
