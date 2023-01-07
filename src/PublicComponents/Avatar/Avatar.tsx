@@ -7,7 +7,7 @@ interface AvatarProps {
 
 function Avatar({ imageSrc, name }:AvatarProps) {
   return (
-    <img src={imageSrc} alt={name} className="w-[50px] rounded-full object-cover" />
+    <img src={imageSrc} alt={name} className="w-[50px] h-[50px] rounded-full object-cover" />
   );
 }
 

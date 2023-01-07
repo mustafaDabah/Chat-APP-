@@ -5,16 +5,19 @@ import { useStore } from '../../../store/store';
 
 function useGetUserChats() {
   const [chats, setChats] = useState<DocumentData>([]);
-  const { currentUser } = useStore();
+  const { currentUser, selectUserChat } = useStore();
+
+  console.log(selectUserChat);
 
   useEffect(() => {
     const getChats = () => {
       if (currentUser.uid) {
-        const unsub = onSnapshot(doc(db, 'userChats', currentUser.uid), (res) => {
+        const unsubscribe = onSnapshot(doc(db, 'userChats', currentUser.uid), (res) => {
+          // @ts-ignore
           setChats(res.data());
         });
 
-        return unsub;
+        return unsubscribe;
       }
 
       return null;

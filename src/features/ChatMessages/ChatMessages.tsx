@@ -27,7 +27,7 @@ function ChatMessages() {
       getMessages();
     }
   }, [chatId]);
-
+  // bg-forth
   return (
     <div className="bg-forth w-full min-h-screen relative">
       <Navbar />

@@ -22,7 +22,9 @@ interface ChatType {
 function UserList({ users }:UsersListProps) {
   const chats = useGetUserChats();
 
-  const displayUsers = Object.entries(chats).map((user:[string, ChatType]) => (
+  console.log(chats);
+
+  const displayUsers = chats && Object.entries(chats)?.map((user:[string, ChatType]) => (
     <User
       image={user[1].userInfo.photoURL}
       name={user[1].userInfo.displayName}

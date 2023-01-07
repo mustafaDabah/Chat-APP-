@@ -1,13 +1,14 @@
 import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import React from 'react';
+import { toast } from 'react-toastify';
 import personImage from '../../../../assets/images/face.jpg';
 import { db } from '../../../../firebase';
 import { Avatar } from '../../../../PublicComponents';
 import { useStore } from '../../../../store/store';
-import { User as UserType } from '../../../../utils/Types/registerTypes';
+import { User as UserType, UserChatTypes } from '../../../../utils/Types/registerTypes';
 
 interface UserProps {
-  image: string | null;
+  image: string;
   name: string;
   uid: string;
   lastMessage: string;
@@ -48,15 +49,15 @@ function User({ image, name, lastMessage, time, uid }:UserProps) {
       }
 
       setChatId(combinedId);
-      const userInfo:UserType = {
-        uid,
+      const userInfo:UserChatTypes = {
         displayName: name,
         photoURL: image,
         lastMessage,
+        uid,
       };
       setUserChat(userInfo);
     } catch (error) {
-      console.log(error);
+      toast.error((error as Error).message);
     }
 
     // create a chat in chats collection

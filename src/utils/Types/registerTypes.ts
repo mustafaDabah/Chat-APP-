@@ -11,3 +11,10 @@ export interface User {
     photoURL?: string;
     lastMessage?:string
 }
+
+export interface UserChatTypes {
+    uid:string;
+    displayName:string;
+    lastMessage: string;
+    photoURL:string;
+}
