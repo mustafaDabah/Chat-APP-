@@ -25,3 +25,4 @@ function SliderItem({ user }:UserProps) {
 }
 
 export default SliderItem;
+export const SliderItemMemo = React.memo(SliderItem);

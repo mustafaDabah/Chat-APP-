@@ -1,16 +1,9 @@
-import { doc, DocumentData, onSnapshot } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
-import { db } from '../../../../firebase';
-import { useStore } from '../../../../store/store';
-import { User as UserTypes } from '../../../../utils/Types/registerTypes';
+import React from 'react';
 import useGetUserChats from '../../Hooks/useGetUserChats';
-import User from '../User/User';
-
-interface UsersListProps {
-  users:DocumentData[]
-}
+import { UserMemo } from '../User/User';
 
 interface ChatType {
+  date:Date
   userInfo: {
     photoURL: string ;
     displayName: string;
@@ -19,23 +12,23 @@ interface ChatType {
   lastMessage: string;
 }
 
-function UserList({ users }:UsersListProps) {
+function UserList() {
   const chats = useGetUserChats();
 
-  console.log(chats);
-
   const displayUsers = chats && Object.entries(chats)?.map((user:[string, ChatType]) => (
-    <User
+    <UserMemo
       image={user[1].userInfo.photoURL}
       name={user[1].userInfo.displayName}
       uid={user[1].userInfo.uid}
       lastMessage={user[1].lastMessage}
       key={user[1].userInfo.uid}
+      time={user[1].date}
     />
   ));
 
   return (
-    <div className="container overflow-auto h-[800px]">
+    <div className="container overflow-auto  h-[550px]">
+      <h3 className="text-gray-200 text-xl font-semibold  pt-3 capitalize">my chat list </h3>
       {displayUsers}
     </div>
   );

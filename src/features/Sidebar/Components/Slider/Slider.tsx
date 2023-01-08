@@ -1,8 +1,7 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { UserChatTypes } from '../../../../utils/Types/registerTypes';
-import useGetUsers from '../../Hooks/useGetUsers';
-import SliderItem from '../SliderItem/SliderItem';
+import { User, UserChatTypes } from '../../../../utils/Types/registerTypes';
+import SliderItem, { SliderItemMemo } from '../SliderItem/SliderItem';
 
 const responsive = {
   superLargeDesktop: {
@@ -24,16 +23,19 @@ const responsive = {
   // },
 };
 
-function SliderTwo() {
-  const { users } = useGetUsers();
-  const usersDisplay = users?.map((user) => <SliderItem key={user.uid} user={user as UserChatTypes} />);
+interface SliderTwoProps {
+  users:User[]
+}
+
+function SliderTwo({ users }: SliderTwoProps) {
+  // const { users } = useGetUsers();
+  const usersDisplay = users?.map((user) => <SliderItemMemo key={user.uid} user={user as UserChatTypes} />);
 
   return (
     <div className="bg-third py-3">
       <div className="container">
-        <h3 className="text-gray-200 text-xl pb-3 capitalize">users List </h3>
+        <h3 className="text-gray-200 text-xl pb-3 capitalize font-semibold">users List </h3>
         <Carousel responsive={responsive} itemClass="carousel-width">
-          {/* {users && users?.map((user) => <SliderItem key={user.uid} user={user} />)} */}
           {usersDisplay}
         </Carousel>
       </div>

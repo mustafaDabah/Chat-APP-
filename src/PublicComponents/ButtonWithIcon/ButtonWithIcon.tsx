@@ -19,3 +19,4 @@ function ButtonWithIcon({ icon, name, handelClick }: ButtonWithIconProps) {
 }
 
 export default ButtonWithIcon;
+export const ButtonWithIconMemo = React.memo(ButtonWithIcon);

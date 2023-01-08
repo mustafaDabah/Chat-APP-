@@ -2,14 +2,14 @@ import React from 'react';
 import { signOut } from 'firebase/auth';
 import existIcon from '../../../../assets/images/exist.svg';
 import verticalMenuIcon from '../../../../assets/images/face.jpg';
-import { Avatar, ButtonWithIcon } from '../../../../PublicComponents';
+import { Avatar, ButtonWithIconMemo } from '../../../../PublicComponents';
 import { useStore } from '../../../../store/store';
 import { auth } from '../../../../firebase';
 
 function Navbar() {
-  const currentUser = useStore((state) => state.currentUser);
+  const selectUserChat = useStore((state) => state.selectUserChat);
 
-  console.log(currentUser);
+  console.log(selectUserChat);
 
   return (
     <nav className=" bg-white shadow-sm">
@@ -18,12 +18,12 @@ function Navbar() {
           <div className="flex items-center">
             {/* --user info-- */}
             <Avatar
-              imageSrc={currentUser?.photoURL}
-              name={currentUser?.displayName}
+              imageSrc={selectUserChat?.photoURL}
+              name={selectUserChat?.displayName}
             />
-            <h3 className="text-gray-600 text-xl ml-3">{currentUser?.displayName}</h3>
+            <h3 className="text-gray-600 text-xl ml-3">{selectUserChat?.displayName}</h3>
           </div>
-          <ButtonWithIcon
+          <ButtonWithIconMemo
             icon={existIcon}
             name="exist icon"
             handelClick={() => signOut(auth)}

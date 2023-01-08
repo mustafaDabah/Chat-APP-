@@ -1,4 +1,4 @@
-import { NavbarMemo, Slider, UserList } from './Components';
+import { NavbarMemo, Slider, UserListMemo } from './Components';
 import useGetUsers from './Hooks/useGetUsers';
 
 function Sidebar() {
@@ -7,8 +7,8 @@ function Sidebar() {
   return (
     <section className="bg-primary min-h-screen w-[40%]">
       <NavbarMemo handleSearch={handleSearch} />
-      <Slider />
-      <UserList users={users} />
+      <Slider users={users} />
+      <UserListMemo />
     </section>
   );
 }

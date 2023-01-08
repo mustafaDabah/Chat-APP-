@@ -1,5 +1,5 @@
 import { collection, DocumentData, getDocs } from 'firebase/firestore';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
 
 function useGetUsers() {
@@ -15,13 +15,13 @@ function useGetUsers() {
     getUsers();
   }, []);
 
-  const handleSearch = useCallback((searchValue: string) => {
+  const handleSearch = (searchValue: string) => {
     if (!searchValue.length) {
       getUsers();
     }
     const selectUsersBySearch = users?.filter((user) => user.displayName.toLowerCase().includes(searchValue.toLowerCase()));
     setUsers(selectUsersBySearch);
-  }, []);
+  };
   return { users, handleSearch };
 }
 

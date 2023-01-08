@@ -1,23 +1,23 @@
 import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { toast } from 'react-toastify';
-import personImage from '../../../../assets/images/face.jpg';
 import { db } from '../../../../firebase';
 import { Avatar } from '../../../../PublicComponents';
 import { useStore } from '../../../../store/store';
-import { User as UserType, UserChatTypes } from '../../../../utils/Types/registerTypes';
+import { getTime } from '../../../../utils/getTime';
+import { UserChatTypes } from '../../../../utils/Types/registerTypes';
 
 interface UserProps {
   image: string;
   name: string;
   uid: string;
   lastMessage: string;
-  time?:Date
+  time:Date
 }
 
 function User({ image, name, lastMessage, time, uid }:UserProps) {
   const { currentUser, setUserChat, setChatId } = useStore();
-  console.log(lastMessage);
+  // console.log(time?.toDate().getTime());
 
   const combinedId = currentUser.uid > uid ? currentUser.uid + uid : uid + currentUser.uid;
 
@@ -72,14 +72,11 @@ function User({ image, name, lastMessage, time, uid }:UserProps) {
           <p className="text-gray-400 italic truncate  w-40">{lastMessage}</p>
         </div>
       </button>
-      <p className="text-gray-200">{time}</p>
+      <p className="text-gray-200">{getTime(time)}</p>
     </div>
   );
 }
 
-User.defaultProps = {
-  time: '9:30pm',
-};
-
 export default User;
+export const UserMemo = React.memo(User);
 

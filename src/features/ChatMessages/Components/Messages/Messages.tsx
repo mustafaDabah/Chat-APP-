@@ -1,5 +1,6 @@
 import React from 'react';
 import { useStore } from '../../../../store/store';
+import { getTime } from '../../../../utils/getTime';
 // text, timestamp, sender, avatarUrl
 function Messages({ message }) {
   const { currentUser } = useStore();
@@ -16,7 +17,7 @@ function Messages({ message }) {
         </div>
         {/* --message text-- */}
         <p className={`${isCurrentUser ? 'text-gray-300' : 'text-gray-700'}`}>{message.text}</p>
-        <p className={`text-gray-400 italic text-sm ${isCurrentUser ? 'text-right' : 'text-left'}`}>19:00pm</p>
+        <p className={`text-gray-400 italic text-sm ${isCurrentUser ? 'text-right' : 'text-left'}`}>{getTime(message.date)}</p>
       </div>
       {/* {isCurrentUser && <img src={avatarUrl} alt={sender} className="w-12 h-12 rounded-full flex-shrink-0 mx-6" />} */}
     </div>

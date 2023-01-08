@@ -5,24 +5,22 @@ import { useStore } from '../../../store/store';
 
 function useGetUserChats() {
   const [chats, setChats] = useState<DocumentData>([]);
-  const { currentUser, selectUserChat } = useStore();
+  const currentUser = useStore((state) => state.currentUser);
 
-  console.log(selectUserChat);
+  const getChats = () => {
+    if (currentUser.uid) {
+      const unsubscribe = onSnapshot(doc(db, 'userChats', currentUser.uid), (res) => {
+        // @ts-ignore
+        setChats(res.data());
+      });
+
+      return unsubscribe;
+    }
+
+    return null;
+  };
 
   useEffect(() => {
-    const getChats = () => {
-      if (currentUser.uid) {
-        const unsubscribe = onSnapshot(doc(db, 'userChats', currentUser.uid), (res) => {
-          // @ts-ignore
-          setChats(res.data());
-        });
-
-        return unsubscribe;
-      }
-
-      return null;
-    };
-
     if (currentUser.uid) {
       getChats();
     }
