@@ -4,13 +4,14 @@ import { UserChatTypes } from '../utils/Types/registerTypes';
 // import { User } from '../utils/Types/registerTypes';
 
 interface State {
-  currentUser:User,
+  currentUser:User | object,
   selectUserChat: UserChatTypes,
   chatId:string,
 }
 
 interface Action {
   setCurrentUser:(currentUser: State['currentUser']) => void
+  resetCurrentUser:() => void
   setUserChat:(selectUserChat: State['selectUserChat']) => void
   setChatId:(chatId: State['chatId']) => void
 }
@@ -18,6 +19,7 @@ interface Action {
 export const useStore = create<State & Action>((set) => ({
   currentUser: {} as User,
   setCurrentUser: (user) => set({ currentUser: user }),
+  resetCurrentUser: () => set({ currentUser: {} }),
   selectUserChat: {} as State['selectUserChat'],
   setUserChat: (user) => set({ selectUserChat: user }),
   chatId: '',

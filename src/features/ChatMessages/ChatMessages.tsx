@@ -11,24 +11,25 @@ function ChatMessages() {
   const selectUserChat = useStore((state) => state.selectUserChat);
 
   return (
-    <div className=" w-full min-h-screen relative">
+    <div className="bg-forth bg-gray-600 w-full min-h-screen relative">
       <Navbar />
       {
         Object.keys(selectUserChat).length > 1 ? (
-          <div className="h-[720px] overflow-auto">
-            {messages.map((message: MessageType['message']) => (
-              <Message message={message} key={message.id} />
-            ))}
-          </div>
-
+          <>
+            <div className="h-[720px] overflow-auto">
+              {messages.map((message: MessageType['message']) => (
+                <Message message={message} key={message.id} />
+              ))}
+            </div>
+            <SendMessage />
+          </>
         ) : (
-          <div className="flex justify-center items-center flex-col py-3">
+          <div className="flex justify-center items-center flex-col pt-10">
             <img src={ImgIllustrator} alt="" />
             <h3 className="text-primary text-center capitalize text-xl font-semibold py-6">please select user to start chat</h3>
           </div>
         )
       }
-      <SendMessage />
     </div>
   );
 }

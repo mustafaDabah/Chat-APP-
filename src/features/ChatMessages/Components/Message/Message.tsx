@@ -2,6 +2,7 @@ import { useStore } from '../../../../store/store';
 import { getTime } from '../../../../utils/getTime';
 import { MessageType } from '../../../../utils/Types/registerTypes';
 import useScroll from '../../hooks/useScroll';
+import imgEx from '../../../../assets/images/face.jpg';
 // text, timestamp, sender, avatarUrl
 
 function Message({ message }:MessageType) {
@@ -9,7 +10,7 @@ function Message({ message }:MessageType) {
   const isCurrentUser = message.senderId === currentUser.uid;
   const ref = useScroll(message);
 
-  console.log(currentUser);
+  console.log(message.img);
 
   return (
     <div ref={ref} className={`flex items-center pt-3 z-20 ${isCurrentUser ? 'justify-end' : 'justify-start'}`}>
@@ -21,6 +22,7 @@ function Message({ message }:MessageType) {
         </div>
         {/* --message text-- */}
         <p className={`${isCurrentUser ? 'text-gray-300' : 'text-gray-700'}`}>{message.text}</p>
+        {message.img ? (<img src={message.img} alt="" className="w-[200px] h-[200px] object-cover" />) : null}
         <p className={`text-gray-400 italic text-sm ${isCurrentUser ? 'text-right' : 'text-left'}`}>{getTime(message.date)}</p>
       </div>
       {isCurrentUser && <img src={currentUser.photoURL || ''} alt="" className="w-12 h-12 rounded-full flex-shrink-0 mx-6 object-cover" />}

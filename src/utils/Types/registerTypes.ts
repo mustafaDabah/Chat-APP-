@@ -25,5 +25,6 @@ export interface MessageType {
       id: number
       senderId: string
       text: string
+      img?:string
     }
   }

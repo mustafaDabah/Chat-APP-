@@ -1,77 +1,40 @@
-import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import React, { useState } from 'react';
+
+import React, { FormEvent, useState } from 'react';
 import pictureIcon from '../../../../assets/images/picture.svg';
 import sendIcon from '../../../../assets/images/send.svg';
-import { db, storage } from '../../../../firebase';
-import { useStore } from '../../../../store/store';
+import useSendMessage from '../../hooks/useSendMessage';
 
 function SendMessage() {
-  const { chatId, selectUserChat, currentUser } = useStore();
   const [text, setText] = useState('');
   const [img, setImg] = useState(null);
+  const [previewImg, setPreviewImg] = useState('');
+  const { handleSendMessage } = useSendMessage(img, text);
+  const reader = new FileReader();
 
-  const generateId:number = Math.floor(Math.random() * 1000);
-
-  console.log(selectUserChat);
-  // @ts-ignore
-  const handleSend = async (e) => {
+  const sendMessage = (e: FormEvent) => {
     e.preventDefault();
-    if (img) {
-      // @ts-ignore
-      const storageRef = ref(storage, generateId);
-
-      const uploadTask = uploadBytesResumable(storageRef, img);
-
-      uploadTask.on(
-        // @ts-ignore
-        // (error) => {
-        //   // TODO:Handle Error
-        // },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateDoc(doc(db, 'chats', chatId), {
-              messages: arrayUnion({
-                id: generateId,
-                text,
-                senderId: currentUser.uid,
-                date: Timestamp.now(),
-                img: downloadURL,
-              }),
-            });
-          });
-        },
-      );
-    } else {
-      await updateDoc(doc(db, 'chats', chatId), {
-        messages: arrayUnion({
-          id: generateId,
-          text,
-          senderId: currentUser.uid,
-          date: Timestamp.now(),
-        }),
-      });
-    }
-
-    await updateDoc(doc(db, 'userChats', currentUser.uid), {
-      [`${chatId}.lastMessage`]: text,
-      [`${chatId}.date`]: serverTimestamp(),
-    });
-
-    await updateDoc(doc(db, 'userChats', selectUserChat.uid), {
-      [`${chatId}.lastMessage`]: text,
-      [`${chatId}.date`]: serverTimestamp(),
-    });
-
+    handleSendMessage();
     setText('');
     setImg(null);
   };
 
+  console.log(img);
+  // console.log(reader.readAsDataURL(img));
+
+  const handleImg = (e: FormEvent) => {
+    // @ts-ignore
+    setImg((e.target as HTMLInputElement).files[0]);
+    reader.readAsDataURL(e.target.files[0]);
+    console.log(result);
+    setPreviewImg(result);
+  };
+
+  console.log(previewImg);
   return (
-    <div className="bg-white shadow-md h-20 mb-0 absolute bottom-0 w-full">
+    <div className="bg-white shadow-md h-20 mb-0 absolute bottom-0 w-full ">
       <div className="container">
         <div className="flex justify-between h-[70px]">
-          <form onSubmit={handleSend} className="flex items-center flex-1">
+          <form onSubmit={sendMessage} className="flex items-center flex-1">
             {/* --search input-- */}
             <label htmlFor="write" className="flex w-full  h-[30px] justify-start items-center rounded-xl  py-6 px-2">
               <input
@@ -79,12 +42,27 @@ function SendMessage() {
                 id="write"
                 className=" w-[100%] rounded-md outline-none text-gray-600"
                 placeholder="Write Message"
+                value={text}
+                accept="image/*"
                 onChange={(e) => setText(e.target.value)}
               />
-              <img src={pictureIcon} className="w-[20px] object-cover mr-2" alt="" />
+            </label>
+            <label htmlFor="image">
+              <input
+                type="file"
+                id="image"
+                className="opacity-0 cursor-pointer absolute w-64  z-10 top-0 right-0 "
+                onChange={handleImg}
+              />
+              <img src={pictureIcon} id="image" className="w-[20px] object-cover mr-2 cursor-pointer" alt="" />
             </label>
           </form>
-          <img src={sendIcon} className="w-[30px]" alt="" />
+          <button type="button" onClick={sendMessage}>
+            <img src={sendIcon} className="w-[30px]" alt="" />
+          </button>
+        </div>
+        <div>
+          <img src={previewImg} alt="" />
         </div>
       </div>
     </div>

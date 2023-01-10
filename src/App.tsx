@@ -11,6 +11,8 @@ import PrivateRoute from './utils/PrivateRoute';
 function App() {
   const { setCurrentUser, currentUser } = useStore();
 
+  console.log(currentUser);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) setCurrentUser(user);

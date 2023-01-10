@@ -8,11 +8,11 @@ import { auth } from '../../../../firebase';
 
 function Navbar() {
   // const selectUserChat = useStore((state) => state.selectUserChat);
-  const { selectUserChat, setCurrentUser } = useStore();
+  const { selectUserChat, resetCurrentUser } = useStore();
 
   const logout = () => {
     signOut(auth);
-    // setCurrentUser({});
+    resetCurrentUser();
   };
 
   return (
