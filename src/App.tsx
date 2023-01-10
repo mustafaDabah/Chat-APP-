@@ -9,21 +9,15 @@ import { useStore } from './store/store';
 import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
-  const setCurrentUser = useStore((state) => state.setCurrentUser);
+  const { setCurrentUser, currentUser } = useStore();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      // const userData:User = {
-      //   uid: user?.uid as string,
-      //   displayName: user?.displayName as string,
-      //   email: user?.email as string,
-      //   photoURL: user?.photoURL as string,
-      // };
       if (user) setCurrentUser(user);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [currentUser]);
 
   return (
     <Routes>

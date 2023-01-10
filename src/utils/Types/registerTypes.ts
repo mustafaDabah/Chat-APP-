@@ -18,3 +18,12 @@ export interface UserChatTypes {
     lastMessage: string;
     photoURL:string;
 }
+
+export interface MessageType {
+    message:{
+      date:Date
+      id: number
+      senderId: string
+      text: string
+    }
+  }

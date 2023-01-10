@@ -6,10 +6,10 @@ function Navbar() {
   return (
     <div className="container">
       <div className="h-[70px] shadow-sm flex justify-end items-center">
-        <ButtonWithIcon
+        {/* <ButtonWithIcon
           icon={closeIcon}
           name="close icon"
-        />
+        /> */}
       </div>
     </div>
   );

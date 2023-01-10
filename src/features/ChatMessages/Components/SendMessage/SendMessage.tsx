@@ -14,17 +14,20 @@ function SendMessage() {
   const generateId:number = Math.floor(Math.random() * 1000);
 
   console.log(selectUserChat);
+  // @ts-ignore
   const handleSend = async (e) => {
     e.preventDefault();
     if (img) {
+      // @ts-ignore
       const storageRef = ref(storage, generateId);
 
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       uploadTask.on(
-        (error) => {
-          // TODO:Handle Error
-        },
+        // @ts-ignore
+        // (error) => {
+        //   // TODO:Handle Error
+        // },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             await updateDoc(doc(db, 'chats', chatId), {

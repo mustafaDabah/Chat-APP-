@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import editIcon from '../../../../assets/images/edit.svg';
-
-function UserInfo({ name: any, onSubmit: any }) {
-  const [newName, setNewName] = useState(name);
+// { name: any, onSubmit: any }
+function UserInfo() {
+  const [newName, setNewName] = useState('');
 
   const handleChange = (event: any) => {
     setNewName(event.target.value);
   };
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    onSubmit(newName);
-  };
-
+  // const handleSubmit = (event: any) => {
+  //   event.preventDefault();
+  //   onSubmit(newName);
+  // };
+  // onSubmit={handleSubmit}
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="container">
         <div className="relative pt-3 rounded-md shadow-sm">
           <input
             type="text"
-            value={newName}
+            // value={newName}
             onChange={handleChange}
             className="py-2 px-4 text-center text-xl w-full rounded-md outline-none "
           />

@@ -15,7 +15,7 @@ interface ChatType {
 function UserList() {
   const chats = useGetUserChats();
 
-  const displayUsers = chats && Object.entries(chats)?.map((user:[string, ChatType]) => (
+  const displayUsers = Object.entries(chats)?.map((user:[string, ChatType]) => (
     <UserMemo
       image={user[1].userInfo.photoURL}
       name={user[1].userInfo.displayName}

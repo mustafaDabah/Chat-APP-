@@ -7,9 +7,13 @@ import { useStore } from '../../../../store/store';
 import { auth } from '../../../../firebase';
 
 function Navbar() {
-  const selectUserChat = useStore((state) => state.selectUserChat);
+  // const selectUserChat = useStore((state) => state.selectUserChat);
+  const { selectUserChat, setCurrentUser } = useStore();
 
-  console.log(selectUserChat);
+  const logout = () => {
+    signOut(auth);
+    // setCurrentUser({});
+  };
 
   return (
     <nav className=" bg-white shadow-sm">
@@ -26,7 +30,7 @@ function Navbar() {
           <ButtonWithIconMemo
             icon={existIcon}
             name="exist icon"
-            handelClick={() => signOut(auth)}
+            handelClick={logout}
           />
         </div>
       </div>
