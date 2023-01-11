@@ -1,13 +1,8 @@
-import React from 'react';
-import { Message, Navbar, SendMessage } from './Components';
-import useMessages from './hooks/useMessages';
-import { MessageType } from '../../utils/Types/registerTypes';
-import messagesBG from '../../assets/images/bg.png';
+import { MessagesList, Navbar, SendMessage } from './Components';
 import { useStore } from '../../store/store';
 import ImgIllustrator from '../../assets/images/message.svg';
 
 function ChatMessages() {
-  const messages = useMessages();
   const selectUserChat = useStore((state) => state.selectUserChat);
 
   return (
@@ -16,11 +11,7 @@ function ChatMessages() {
       {
         Object.keys(selectUserChat).length > 1 ? (
           <>
-            <div className="h-[720px] overflow-auto">
-              {messages.map((message: MessageType['message']) => (
-                <Message message={message} key={message.id} />
-              ))}
-            </div>
+            <MessagesList />
             <SendMessage />
           </>
         ) : (

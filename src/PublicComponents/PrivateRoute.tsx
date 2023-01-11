@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useStore } from '../store/store';
 
@@ -8,10 +7,11 @@ interface PropsPrivateRoute {
 
 function PrivateRoute({ children }:PropsPrivateRoute) {
   const currentUser = useStore((state) => state.currentUser);
+  console.log(Object.keys(currentUser).length);
 
-  if (Object.keys(currentUser).length <= 0) {
-    return <Navigate to="/login" />;
-  }
+  // if (!currentUser.uid) {
+  //   return <Navigate to="/login" />;
+  // }
   return children;
 }
 export default PrivateRoute;

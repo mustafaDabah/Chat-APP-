@@ -39,17 +39,17 @@ function useSendMessage(img:File | null, text:string) {
           date: Timestamp.now(),
         }),
       });
+
+      await updateDoc(doc(db, 'userChats', currentUser.uid), {
+        [`${chatId}.lastMessage`]: text,
+        [`${chatId}.date`]: serverTimestamp(),
+      });
+
+      await updateDoc(doc(db, 'userChats', selectUserChat.uid), {
+        [`${chatId}.lastMessage`]: text,
+        [`${chatId}.date`]: serverTimestamp(),
+      });
     }
-
-    await updateDoc(doc(db, 'userChats', currentUser.uid), {
-      [`${chatId}.lastMessage`]: text,
-      [`${chatId}.date`]: serverTimestamp(),
-    });
-
-    await updateDoc(doc(db, 'userChats', selectUserChat.uid), {
-      [`${chatId}.lastMessage`]: text,
-      [`${chatId}.date`]: serverTimestamp(),
-    });
   };
 
   return { handleSendMessage };

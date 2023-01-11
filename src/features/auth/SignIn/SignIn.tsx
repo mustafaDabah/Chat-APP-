@@ -10,6 +10,7 @@ function SignIn() {
 
   return (
     <form className="flex justify-center items-center flex-col" onSubmit={handleSignInWithEmailAndPassword}>
+      <Link to="/">home</Link>
       <Alert />
       <Link to="/sign-up">sign up</Link>
       <input type="email" name="email" placeholder="email" className="p-3 mb-3" />

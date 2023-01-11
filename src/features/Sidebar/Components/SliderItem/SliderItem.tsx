@@ -14,12 +14,15 @@ function SliderItem({ user }:UserProps) {
     <button
       onClick={setChat}
       type="button"
-      className="hover:border-secondary rounded-full border-solid hover:border-2 ease-linear duration-300"
+      className="hover:border-secondary rounded-full border-solid hover:border-2 ease-linear duration-300  "
     >
       <Avatar
         imageSrc={user.photoURL}
         name={`user ${user.displayName}`}
       />
+      <div className="bg-secondary w-22 h-10 p-3 text-center m-1">
+        <h3>{user.displayName}</h3>
+      </div>
     </button>
   );
 }

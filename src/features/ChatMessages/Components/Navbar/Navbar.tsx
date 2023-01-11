@@ -8,7 +8,9 @@ import { auth } from '../../../../firebase';
 
 function Navbar() {
   // const selectUserChat = useStore((state) => state.selectUserChat);
-  const { selectUserChat, resetCurrentUser } = useStore();
+  const { selectUserChat, resetCurrentUser, currentUser } = useStore();
+
+  console.log(currentUser);
 
   const logout = () => {
     signOut(auth);
