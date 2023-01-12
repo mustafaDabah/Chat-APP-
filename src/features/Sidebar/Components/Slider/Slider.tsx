@@ -5,9 +5,9 @@ import SliderItem, { SliderItemMemo } from '../SliderItem/SliderItem';
 
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 320 },
-    items: 5,
+    breakpoint: { max: 4000, min: 0 },
+    items: 4,
+
   },
   // desktop: {
   //   breakpoint: { max: 3000, min: 1024 },

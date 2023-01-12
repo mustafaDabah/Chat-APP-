@@ -6,7 +6,7 @@ function ChatMessages() {
   const selectUserChat = useStore((state) => state.selectUserChat);
 
   return (
-    <div className="bg-forth bg-gray-600 w-full min-h-screen relative">
+    <div className="bg-forth bg-gray-600 w-full min-h-screen hidden z-20 absolute">
       <Navbar />
       {
         Object.keys(selectUserChat).length > 1 ? (

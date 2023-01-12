@@ -23,7 +23,11 @@ body {
     border-radius: 10px;
   }
 
-  .carousel-width {
-    width: 60px !important;
+  
+  @media (max-width:480px) {
+    .carousel-width {
+      /* max-width: 120px !important; */
+      margin-right:  40px
+    }
   }
   

@@ -6,7 +6,7 @@ import useSetChat from '../../Hooks/useSetChat';
 interface UserProps {
   user:UserChatTypes
 }
-
+// hover:border-secondary rounded-full border-solid hover:border-2 ease-linear duration-300
 function SliderItem({ user }:UserProps) {
   const { setChat } = useSetChat(user);
 
@@ -14,14 +14,16 @@ function SliderItem({ user }:UserProps) {
     <button
       onClick={setChat}
       type="button"
-      className="hover:border-secondary rounded-full border-solid hover:border-2 ease-linear duration-300  "
+      className="relative flex flex-col items-center"
     >
-      <Avatar
-        imageSrc={user.photoURL}
-        name={`user ${user.displayName}`}
-      />
-      <div className="bg-secondary w-22 h-10 p-3 text-center m-1">
-        <h3>{user.displayName}</h3>
+      <div className="mt-2 z-20">
+        <Avatar
+          imageSrc={user.photoURL}
+          name={`user ${user.displayName}`}
+        />
+      </div>
+      <div className="bg-secondary w-28 -mt-4 z-10 h-14 p-3 text-center rounded-lg flex items-end justify-center">
+        <h3 className="text-white">{user.displayName.replace(/ .*/, '')}</h3>
       </div>
     </button>
   );
