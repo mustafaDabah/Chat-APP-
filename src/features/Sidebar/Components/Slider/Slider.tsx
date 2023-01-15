@@ -28,15 +28,16 @@ interface SliderTwoProps {
 }
 
 function SliderTwo({ users }: SliderTwoProps) {
-  // const { users } = useGetUsers();
-  const usersDisplay = users?.map((user) => <SliderItemMemo key={user.uid} user={user as UserChatTypes} />);
+  const usersDisplay = users.map((user) => (<SliderItemMemo key={user.uid} user={user as UserChatTypes} />));
 
   return (
     <div className="bg-third py-3">
       <div className="container">
         <h3 className="text-gray-200 text-xl pb-3 capitalize font-semibold">users List </h3>
         <Carousel responsive={responsive} itemClass="carousel-width">
-          {usersDisplay}
+          {
+            usersDisplay
+          }
         </Carousel>
       </div>
     </div>

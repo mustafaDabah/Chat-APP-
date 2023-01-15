@@ -4,16 +4,16 @@ import ImgIllustrator from '../../assets/images/message.svg';
 
 function ChatMessages() {
   const selectUserChat = useStore((state) => state.selectUserChat);
-
+  // hidden z-20 absolute
   return (
-    <div className="bg-forth bg-gray-600 w-full min-h-screen hidden z-20 absolute">
+    <div className="bg-forth w-full min-h-screen ">
       <Navbar />
       {
         Object.keys(selectUserChat).length > 1 ? (
-          <>
+          <div className="relative ">
             <MessagesList />
             <SendMessage />
-          </>
+          </div>
         ) : (
           <div className="flex justify-center items-center flex-col pt-10">
             <img src={ImgIllustrator} alt="" />

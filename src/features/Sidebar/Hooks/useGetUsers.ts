@@ -19,7 +19,7 @@ function useGetUsers() {
     if (!searchValue.length) {
       getUsers();
     }
-    const selectUsersBySearch = users?.filter((user) => user.displayName.toLowerCase().includes(searchValue.toLowerCase()));
+    const selectUsersBySearch = users.filter((user) => user.displayName.toLowerCase().includes(searchValue.toLowerCase()));
     setUsers(selectUsersBySearch);
   };
   return { users, handleSearch };

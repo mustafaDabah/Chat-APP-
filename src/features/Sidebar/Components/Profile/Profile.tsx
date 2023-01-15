@@ -10,8 +10,8 @@ function Profile() {
       <div className="flex pt-2 items-center">
         <img src={currentUser.photoURL || ''} alt="" className="w-[80px] h-[80px] object-cover" />
         <div className="ml-2">
-          <h2 className="text-xl capitalize  text-forth">{currentUser.displayName}</h2>
-          <h3 className="text-gray-400 italic">{currentUser.email}</h3>
+          <h2 className="text-xl capitalize text-forth font-bold ">{currentUser.displayName}</h2>
+          <h3 className="text-gray-400 italic text-xs md:text-sm">{currentUser.email}</h3>
         </div>
       </div>
       <button type="button" className="bg-third w-[50px] h-[50px] rounded-full flex justify-center items-center">

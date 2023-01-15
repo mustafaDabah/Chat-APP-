@@ -25,13 +25,13 @@ function SendMessage() {
   const resetImage = () => setImg(null);
 
   return (
-    <div className="">
+    <div>
       {
-      img ? (<ImageSelect handleClick={resetImage} />) : null
-     }
-      <div className="bg-white shadow-md h-20 mb-0 absolute bottom-0 w-full ">
+        img ? (<ImageSelect handleClick={resetImage} />) : null
+      }
+      <div className="bg-white shadow-md h-[5.5rem] mb-0 absolute bottom-0 w-full ">
         <div className="container">
-          <div className="flex justify-between h-[70px]">
+          <div className="flex justify-between h-[70px] items-center">
             <form onSubmit={sendMessage} className="flex items-center flex-1">
               {/* --search input-- */}
               <label htmlFor="write" className="flex w-full  h-[30px] justify-start items-center rounded-xl  py-6 px-2">

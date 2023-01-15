@@ -7,7 +7,7 @@ function MessagesList() {
   const messages = useMessages();
 
   return (
-    <div className="h-[720px] overflow-auto">
+    <div className="h-[670px] lg:h-[720px] overflow-auto">
       {messages.map((message: MessageType['message']) => (
         <Message message={message} key={message.id} />
       ))}

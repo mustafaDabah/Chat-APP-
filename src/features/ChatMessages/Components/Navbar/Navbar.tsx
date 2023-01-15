@@ -10,8 +10,6 @@ function Navbar() {
   // const selectUserChat = useStore((state) => state.selectUserChat);
   const { selectUserChat, resetCurrentUser, currentUser } = useStore();
 
-  console.log(currentUser);
-
   const logout = () => {
     signOut(auth);
     resetCurrentUser();
@@ -23,11 +21,8 @@ function Navbar() {
         <div className="flex justify-between items-center h-[70px]">
           <div className="flex items-center">
             {/* --user info-- */}
-            <Avatar
-              imageSrc={selectUserChat?.photoURL}
-              name={selectUserChat?.displayName}
-            />
-            <h3 className="text-gray-600 text-xl ml-3">{selectUserChat?.displayName}</h3>
+
+            <h3 className="text-gray-600 text-xl ml-3">{selectUserChat.displayName}</h3>
           </div>
           <ButtonWithIconMemo
             icon={existIcon}
@@ -41,3 +36,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

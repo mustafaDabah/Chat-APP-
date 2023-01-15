@@ -1,6 +1,6 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { auth } from './firebase';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
@@ -10,17 +10,6 @@ import PrivateRoute from './PublicComponents/PrivateRoute';
 
 function App() {
   const { setCurrentUser, currentUser } = useStore();
-  const [count, setCount] = useState(0);
-
-  console.log(currentUser);
-
-  // function ProtectedRoute({ children }) {
-  //   if (!currentUser.uid) {
-  //     return <Navigate to="/login" />;
-  //   }
-
-  //   return children;
-  // }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

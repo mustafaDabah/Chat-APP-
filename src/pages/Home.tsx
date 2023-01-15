@@ -3,7 +3,7 @@ import { ChatMessages, Sidebar } from '../features';
 
 function Home() {
   return (
-    <div className="flex justify-between overflow-hidden">
+    <div className="flex justify-between overflow-hidden ">
       <Sidebar />
       <ChatMessages />
     </div>

@@ -2,15 +2,11 @@ import { useStore } from '../../../../store/store';
 import { getTime } from '../../../../utils/getTime';
 import { MessageType } from '../../../../utils/Types/registerTypes';
 import useScroll from '../../hooks/useScroll';
-import imgEx from '../../../../assets/images/face.jpg';
-// text, timestamp, sender, avatarUrl
 
 function Message({ message }:MessageType) {
   const { currentUser, selectUserChat } = useStore();
   const isCurrentUser = message.senderId === currentUser.uid;
   const ref = useScroll(message);
-
-  console.log(message.img);
 
   return (
     <div ref={ref} className={`flex items-center pt-3 z-20 ${isCurrentUser ? 'justify-end' : 'justify-start'}`}>

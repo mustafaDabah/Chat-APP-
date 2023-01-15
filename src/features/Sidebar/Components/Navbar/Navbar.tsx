@@ -28,9 +28,4 @@ function Navbar({ handleSearch }:NavbarProps) {
 
 export default Navbar;
 export const NavbarMemo = React.memo(Navbar);
-/*
 
-            {/* <button type="button" className="" onClick={handleMenu}>
-              <img src={menuIcon} className="w-[70px] h-1/2 object-cover mr-4" alt="" />
-            </button>
-*/

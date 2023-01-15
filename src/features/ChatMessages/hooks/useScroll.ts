@@ -5,7 +5,9 @@ function useScroll(message: MessageType['message']) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [message]);
 
   return ref;

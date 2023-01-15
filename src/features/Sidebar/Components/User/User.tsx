@@ -17,7 +17,6 @@ interface UserProps {
 
 function User({ image, name, lastMessage, time, uid }:UserProps) {
   const { currentUser, setUserChat, setChatId } = useStore();
-  // console.log(time?.toDate().getTime());
 
   const combinedId = currentUser.uid > uid ? currentUser.uid + uid : uid + currentUser.uid;
 
@@ -69,7 +68,7 @@ function User({ image, name, lastMessage, time, uid }:UserProps) {
         <Avatar imageSrc={image} name={name} />
         <div className="ml-5 text-left">
           <h3 className="text-white text-xl">{name}</h3>
-          <p className="text-gray-400 italic truncate  w-40">{lastMessage}</p>
+          <p className="text-gray-400 italic truncate w-40">{lastMessage}</p>
         </div>
       </button>
       <p className="text-gray-200">{getTime(time)}</p>

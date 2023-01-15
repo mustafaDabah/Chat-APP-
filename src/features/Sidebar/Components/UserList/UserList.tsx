@@ -15,24 +15,40 @@ interface ChatType {
 function UserList() {
   const chats = useGetUserChats();
 
-  const displayUsers = Object.entries(chats)?.map((user:[string, ChatType]) => (
-    <UserMemo
-      image={user[1].userInfo.photoURL}
-      name={user[1].userInfo.displayName}
-      uid={user[1].userInfo.uid}
-      lastMessage={user[1].lastMessage}
-      key={user[1].userInfo.uid}
-      time={user[1].date}
-    />
-  ));
+  console.log(Object.keys(chats).map((chat) => chats[chat]));
+
+  // const displayUsers =
 
   return (
     <div className="container overflow-auto  h-[550px]">
       <h3 className="text-gray-200 text-xl font-semibold  pt-3 capitalize">my chat list </h3>
-      {displayUsers}
+      {
+        Object.keys(chats).map((chat) => (
+          <UserMemo
+            image={chats[chat].userInfo.photoURL}
+            name={chats[chat].userInfo.displayName}
+            uid={chats[chat].userInfo.uid}
+            lastMessage={chats[chat].lastMessage}
+            key={chats[chat].userInfo.uid}
+            time={chats[chat].date}
+          />
+        ))
+      }
     </div>
   );
 }
 
 export default UserList;
 export const UserListMemo = React.memo(UserList);
+/*
+ Object.keys(chats).map((chat) => (
+            <UserMemo
+              image={chats[chat]?.userInfo?.photoURL}
+              name={chats[chat].userInfo.displayName}
+              uid={chats[chat].userInfo.uid}
+              lastMessage={chats[chat]?.lastMessage}
+              key={chats[chat].userInfo.uid}
+              time={chats[chat].date}
+            />
+          ))
+*/
