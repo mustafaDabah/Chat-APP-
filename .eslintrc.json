@@ -23,7 +23,7 @@
       }
     },
     "rules": {
-       "ban-ts-ignore": true,
+      //  "ban-ts-ignore": true,
        "import/no-unresolved": "off",
        "jsx-a11y/label-has-associated-control": ["error", {
            "required": {
