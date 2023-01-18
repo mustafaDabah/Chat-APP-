@@ -1,12 +1,14 @@
 import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { db } from '../../../firebase';
+import { useMobileScreen } from '../../../store/mobileScreen';
 import { useStore } from '../../../store/store';
 import { UserChatTypes } from '../../../utils/Types/registerTypes';
 
 function useSetChat(selectUser:UserChatTypes) {
   const { currentUser, setUserChat, setChatId } = useStore();
   const combinedId = currentUser.uid > selectUser.uid ? currentUser.uid + selectUser.uid : selectUser.uid + currentUser.uid;
+  const setIsSelectUser = useMobileScreen((state) => state.setIsSelectUser);
 
   const setChat = async () => {
     try {
@@ -42,6 +44,7 @@ function useSetChat(selectUser:UserChatTypes) {
         uid: selectUser.uid,
       };
       setUserChat(userInfo);
+      setIsSelectUser();
     } catch (error) {
       toast.error((error as Error).message);
     }

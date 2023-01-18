@@ -29,7 +29,7 @@ function SendMessage() {
       {
         img ? (<ImageSelect handleClick={resetImage} />) : null
       }
-      <div className="bg-white shadow-md h-[5.5rem] mb-0 absolute bottom-0 w-full ">
+      <div className="bg-white shadow-md h-[5rem] mb-0 w-full z-20">
         <div className="container">
           <div className="flex justify-between h-[70px] items-center">
             <form onSubmit={sendMessage} className="flex items-center flex-1">

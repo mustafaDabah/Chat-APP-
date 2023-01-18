@@ -1,16 +1,19 @@
 import { MessagesList, Navbar, SendMessage } from './Components';
 import { useStore } from '../../store/store';
 import ImgIllustrator from '../../assets/images/message.svg';
+import { useMobileScreen } from '../../store/mobileScreen';
 
 function ChatMessages() {
   const selectUserChat = useStore((state) => state.selectUserChat);
+  const isSelectUser = useMobileScreen((state) => state.isSelectUser);
+
   // hidden z-20 absolute
   return (
-    <div className="bg-forth w-full min-h-screen ">
+    <div className={`bg-forth w-full min-h-screen lg:block ${!isSelectUser ? 'hidden' : 'block'} `}>
       <Navbar />
       {
         Object.keys(selectUserChat).length > 1 ? (
-          <div className="relative ">
+          <div className="relative">
             <MessagesList />
             <SendMessage />
           </div>

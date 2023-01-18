@@ -6,7 +6,7 @@ import useSetChat from '../../Hooks/useSetChat';
 interface UserProps {
   user:UserChatTypes
 }
-// hover:border-secondary rounded-full border-solid hover:border-2 ease-linear duration-300
+
 function SliderItem({ user }:UserProps) {
   const { setChat } = useSetChat(user);
 
