@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore';
 import React from 'react';
 import { Avatar } from '../../../../PublicComponents';
 import { getTime } from '../../../../utils/getTime';
@@ -9,7 +10,7 @@ interface UserProps {
   name: string;
   uid: string;
   lastMessage: string;
-  time:Date
+  time:Timestamp
 }
 
 function User({ image, name, lastMessage, time, uid }:UserProps) {

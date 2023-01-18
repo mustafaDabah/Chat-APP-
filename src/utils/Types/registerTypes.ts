@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 export interface UserInputsDataType {
     username?: string;
     password: string;
@@ -21,7 +23,7 @@ export interface UserChatTypes {
 
 export interface MessageType {
     message:{
-      date:Date
+      date:Timestamp
       id: number
       senderId: string
       text: string

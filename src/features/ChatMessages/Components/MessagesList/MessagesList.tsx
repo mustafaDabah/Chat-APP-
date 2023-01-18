@@ -5,9 +5,9 @@ import Message from '../Message/Message';
 
 function MessagesList() {
   const messages = useMessages();
-
+  // h-[78vh] lg:h-[725px]
   return (
-    <div className="h-[78vh] lg:h-[725px] overflow-auto">
+    <div className=" h-[calc(100vh-140px)] overflow-auto">
       {messages.map((message: MessageType['message']) => (
         <Message message={message} key={message.id} />
       ))}
