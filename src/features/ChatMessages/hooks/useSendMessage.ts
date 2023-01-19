@@ -1,10 +1,12 @@
 import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { db, storage } from '../../../firebase';
+import { useCurrentUser } from '../../../store/currentUser';
 import { useStore } from '../../../store/store';
 
 function useSendMessage(img:File | null, text:string) {
-  const { chatId, selectUserChat, currentUser } = useStore();
+  const { currentUser } = useCurrentUser();
+  const { chatId, selectUserChat } = useStore();
 
   const generateId:string | number = `${Math.floor(Math.random() * 1000)}md`;
 

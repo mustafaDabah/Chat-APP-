@@ -1,9 +1,9 @@
 import React from 'react';
-import { useStore } from '../../../../store/store';
 import editIcon from '../../../../assets/images/edit.svg';
+import { useCurrentUser } from '../../../../store/currentUser';
 
 function Profile() {
-  const currentUser = useStore((state) => state.currentUser);
+  const currentUser = useCurrentUser((state) => state.currentUser);
 
   return (
     <div className="flex justify-between items-center">

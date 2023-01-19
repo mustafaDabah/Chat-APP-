@@ -1,10 +1,12 @@
+import { useCurrentUser } from '../../../../store/currentUser';
 import { useStore } from '../../../../store/store';
 import { getTime } from '../../../../utils/getTime';
 import { MessageType } from '../../../../utils/Types/registerTypes';
 import useScroll from '../../hooks/useScroll';
 
 function Message({ message }:MessageType) {
-  const { currentUser, selectUserChat } = useStore();
+  const { currentUser } = useCurrentUser();
+  const { selectUserChat } = useStore();
   const isCurrentUser = message.senderId === currentUser.uid;
   const ref = useScroll(message);
 

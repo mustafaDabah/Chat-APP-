@@ -1,11 +1,11 @@
 import { doc, DocumentData, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
-import { useStore } from '../../../store/store';
+import { useCurrentUser } from '../../../store/currentUser';
 
 function useGetUserChats() {
   const [chats, setChats] = useState<DocumentData>([]);
-  const currentUser = useStore((state) => state.currentUser);
+  const currentUser = useCurrentUser((state) => state.currentUser);
 
   const getChats = () => {
     if (currentUser.uid) {

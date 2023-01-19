@@ -6,9 +6,11 @@ import { ButtonWithIconMemo } from '../../../../PublicComponents';
 import { useStore } from '../../../../store/store';
 import { auth } from '../../../../firebase';
 import { useMobileScreen } from '../../../../store/mobileScreen';
+import { useCurrentUser } from '../../../../store/currentUser';
 
 function Navbar() {
-  const { selectUserChat, resetCurrentUser } = useStore();
+  const { resetCurrentUser } = useCurrentUser();
+  const { selectUserChat } = useStore();
   const resetIsSelectUser = useMobileScreen((state) => state.resetIsSelectUser);
 
   const logout = () => {

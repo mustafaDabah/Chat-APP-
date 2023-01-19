@@ -9,7 +9,7 @@ function ChatMessages() {
 
   // hidden z-20 absolute
   return (
-    <div className={`bg-forth w-full min-h-screen lg:block ${!isSelectUser ? 'hidden' : 'block'} `}>
+    <div className={`bg-forth w-full min-h-screen lg:block ${!isSelectUser ? 'hidden' : 'block'} animate-fadeIn`}>
       <Navbar />
       {
         Object.keys(selectUserChat).length > 1 ? (

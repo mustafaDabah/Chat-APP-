@@ -22,14 +22,12 @@ module.exports = {
         forth: '#f0f8ff',
       },
       keyframes: {
-        'scale-in': {
+        fadeIn: {
           '0%': {
-            '-webkit-transform': 'translateX(120%)',
-            transform: 'scale(0%)',
+            opacity: 0,
           },
           '100%': {
-            '-webkit-transform': 'translateX(0%)',
-            transform: 'scale(100%)',
+            opacity: 1,
           },
         },
         'according-animation-in': {
@@ -55,7 +53,7 @@ module.exports = {
         },
       },
       animation: {
-        'scale-in': 'scale-in 0.5s ease-out',
+        fadeIn: 'fadeIn 0.5s ease-out',
         'according-animation-in': 'according-animation-in 0.8s ease-in-out',
         'according-animation-out': 'according-animation-out 1s ease',
       },
