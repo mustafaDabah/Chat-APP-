@@ -22,40 +22,36 @@ module.exports = {
         forth: '#f0f8ff',
       },
       keyframes: {
-        fadeIn: {
+        fadeInRight: {
           '0%': {
             opacity: 0,
+            transform: 'translateX(20px)',
+            '-webkit-transform': 'translateX(20px)',
           },
           '100%': {
             opacity: 1,
+            transform: 'translateX(0px)',
+            '-webkit-transform': 'translateX(0px)',
           },
         },
-        'according-animation-in': {
+        fadeInLeft: {
           '0%': {
-            '-webkit-transform': 'translateY(100%)',
-            transform: 'scale(0%)',
+            opacity: 0,
+            transform: 'translateX(-20px)',
+            '-webkit-transform': 'translateX(-20px)',
           },
           '100%': {
-            '-webkit-transform': 'translateY(0%)',
-            transform: 'scale(100%)',
+            opacity: 1,
+            transform: 'translateX(0px)',
+            '-webkit-transform': 'translateX(0px)',
           },
         },
-        'according-animation-out': {
-          '0%': {
-            '-webkit-transform': 'translateY(0%)',
-          },
-          '50%': {
-            '-webkit-transform': 'translateY(-50%)',
-          },
-          '100%': {
-            '-webkit-transform': 'translateY(-100%)',
-          },
-        },
+
       },
       animation: {
-        fadeIn: 'fadeIn 0.5s ease-out',
-        'according-animation-in': 'according-animation-in 0.8s ease-in-out',
-        'according-animation-out': 'according-animation-out 1s ease',
+        fadeInRight: 'fadeInRight 0.2s ease',
+        fadeInLeft: 'fadeInLeft 0.2s ease',
+
       },
     },
   },
