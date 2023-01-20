@@ -10,6 +10,8 @@ function Message({ message }:MessageType) {
   const isCurrentUser = message.senderId === currentUser.uid;
   const ref = useScroll(message);
 
+  console.log(message.date);
+
   return (
     <div ref={ref} className={`flex items-center pt-3 z-20 ${isCurrentUser ? 'justify-end' : 'justify-start'}`}>
       {!isCurrentUser && <img src={selectUserChat.photoURL} alt="" className="w-10 h-10 lg:w-12 lg:h-12 rounded-full flex-shrink-0 mx-6 object-cover" />}

@@ -4,17 +4,20 @@ import { UserMemo } from '../User/User';
 
 function UserList() {
   const chats = useGetUserChats();
+  console.log(chats);
 
-  const displayUsers = Object.keys(chats).map((chat) => (
-    <UserMemo
-      image={chats[chat].userInfo.photoURL}
-      name={chats[chat].userInfo.displayName}
-      uid={chats[chat].userInfo.uid}
-      lastMessage={chats[chat].lastMessage}
-      key={chats[chat].userInfo.uid}
-      time={chats[chat].date}
-    />
-  ));
+  const displayUsers = chats ? (
+    Object.keys(chats).map((chat) => (
+      <UserMemo
+        image={chats[chat].userInfo.photoURL}
+        name={chats[chat].userInfo.displayName}
+        uid={chats[chat].userInfo.uid}
+        lastMessage={chats[chat].lastMessage}
+        key={chats[chat].userInfo.uid}
+        time={chats[chat].date}
+      />
+    ))
+  ) : null;
 
   return (
     <div className="container overflow-auto  h-[550px]">
