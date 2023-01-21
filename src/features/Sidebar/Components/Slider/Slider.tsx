@@ -8,6 +8,7 @@ const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 0 },
     items: 4,
+
   },
 };
 
@@ -16,6 +17,9 @@ interface SliderTwoProps {
 }
 
 function SliderTwo({ users }: SliderTwoProps) {
+  console.log('slider');
+
+  console.log(users);
   return (
     <div className="bg-third py-3">
       <div className="container">
