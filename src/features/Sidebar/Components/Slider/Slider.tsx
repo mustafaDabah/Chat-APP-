@@ -8,7 +8,6 @@ const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 0 },
     items: 4,
-
   },
 };
 
@@ -17,14 +16,12 @@ interface SliderTwoProps {
 }
 
 function SliderTwo({ users }: SliderTwoProps) {
-  const usersDisplay = users.map((user) => (<SliderItemMemo key={user.uid} user={user as UserChatTypes} />));
-
   return (
     <div className="bg-third py-3">
       <div className="container">
         <h3 className="text-gray-200 text-xl pb-3 capitalize font-semibold">users List </h3>
         <Carousel responsive={responsive} itemClass="carousel-width">
-          {usersDisplay}
+          {users.map((user) => (<SliderItemMemo key={user.uid} user={user as UserChatTypes} />))}
         </Carousel>
       </div>
     </div>

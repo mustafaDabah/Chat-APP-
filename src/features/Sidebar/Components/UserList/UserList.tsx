@@ -4,9 +4,8 @@ import { UserMemo } from '../User/User';
 
 function UserList() {
   const chats = useGetUserChats();
-  console.log(chats);
 
-  const displayUsers = chats ? (
+  const displayUsers = chats !== undefined ? (
     Object.keys(chats).map((chat) => (
       <UserMemo
         image={chats[chat].userInfo.photoURL}
