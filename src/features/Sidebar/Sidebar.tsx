@@ -1,5 +1,5 @@
 import { useMobileScreen } from '../../store/mobileScreen';
-import { NavbarMemo, SliderTwoMemo, UserListMemo } from './Components';
+import { NavbarMemo, AllUserListMemo, DirectMessageListMemo } from './Components';
 import useGetUsers from './Hooks/useGetUsers';
 
 function Sidebar() {
@@ -9,8 +9,8 @@ function Sidebar() {
   return (
     <section className={`bg-primary min-h-screen z-10 w-full lg:w-[30%] ${isSelectUser ? 'hidden' : 'block'} lg:block animate-fadeInLeft`}>
       <NavbarMemo handleSearch={handleSearch} />
-      <SliderTwoMemo users={users} />
-      <UserListMemo />
+      <AllUserListMemo users={users} />
+      <DirectMessageListMemo />
     </section>
   );
 }

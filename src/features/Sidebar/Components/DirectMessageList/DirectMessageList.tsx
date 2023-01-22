@@ -1,13 +1,13 @@
 import React from 'react';
 import useGetUserChats from '../../Hooks/useGetUserChats';
-import { UserMemo } from '../User/User';
+import { UserMessageMemo } from '../UserMessage/UserMessage';
 
-function UserList() {
+function DirectMessageList() {
   const chats = useGetUserChats();
 
   const displayUsers = chats !== undefined ? (
     Object.keys(chats).map((chat) => (
-      <UserMemo
+      <UserMessageMemo
         image={chats[chat].userInfo.photoURL}
         name={chats[chat].userInfo.displayName}
         uid={chats[chat].userInfo.uid}
@@ -19,13 +19,13 @@ function UserList() {
   ) : null;
 
   return (
-    <div className="container overflow-auto  h-[550px]">
-      <h3 className="text-gray-200 text-xl font-semibold  pt-3 capitalize">my chat list </h3>
+    <div className="container overflow-auto bg-slate-500  mt-5">
+      <h3 className="text-gray-200 text-md mb-2 font-semibold pt-3">DIRECT MESSAGES </h3>
       {displayUsers}
     </div>
   );
 }
 
-export default UserList;
-export const UserListMemo = React.memo(UserList);
+export default DirectMessageList;
+export const DirectMessageListMemo = React.memo(DirectMessageList);
 
