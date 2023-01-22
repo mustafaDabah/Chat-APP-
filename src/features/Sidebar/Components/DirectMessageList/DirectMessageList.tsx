@@ -19,8 +19,8 @@ function DirectMessageList() {
   ) : null;
 
   return (
-    <div className="container overflow-auto bg-slate-500  mt-5">
-      <h3 className="text-gray-200 text-md mb-2 font-semibold pt-3">DIRECT MESSAGES </h3>
+    <div className="container overflow-auto mt-4">
+      <h3 className="text-gray-300 text-sm mb-2 font-semibold pt-3">DIRECT MESSAGES </h3>
       {displayUsers}
     </div>
   );
