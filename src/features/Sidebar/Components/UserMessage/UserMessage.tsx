@@ -27,11 +27,11 @@ function UserMessage({ image, name, lastMessage, time, uid }:UserProps) {
       <button type="button" className="flex justify-start items-center outline-none" onClick={setChat}>
         <Avatar imageSrc={image} name={name} />
         <div className="ml-5 text-left">
-          <h3 className="text-white text-xl">{name}</h3>
-          <p className="text-gray-400 italic truncate w-40">{lastMessage}</p>
+          <h3 className="text-white text:md lg:text-xl">{name}</h3>
+          <p className="text-gray-400 italic truncate w-40 text-sm lg:text-md">{lastMessage}</p>
         </div>
       </button>
-      <p className="text-gray-200">{getTime(time)}</p>
+      <p className="text-gray-200 text-sm lg:text-md">{getTime(time)}</p>
     </div>
   );
 }

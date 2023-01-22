@@ -1,6 +1,7 @@
 import { MessagesList, Navbar, SendMessage } from './Components';
 import { useStore } from '../../store/store';
 import ImgIllustrator from '../../assets/images/message.svg';
+import background from '../../assets/images/background2.jpg';
 import { useMobileScreen } from '../../store/mobileScreen';
 
 function ChatMessages() {
@@ -9,11 +10,12 @@ function ChatMessages() {
 
   // hidden z-20 absolute
   return (
-    <div className={`bg-forth bg-slate-600 w-full min-h-screen lg:block ${!isSelectUser ? 'hidden' : 'block'} animate-fadeInRight`}>
+    <div className={`bg-forth w-full min-h-screen lg:block -z-0 ${!isSelectUser ? 'hidden' : 'block'} animate-fadeInRight`}>
       <Navbar />
       {
         Object.keys(selectUserChat).length > 1 ? (
           <div className="relative">
+            <img src={background} alt="" className="absolute -z-10 top-0 left-0 w-full h-full opacity-[0.5]" />
             <MessagesList />
             <SendMessage />
           </div>

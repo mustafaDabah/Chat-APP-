@@ -10,7 +10,7 @@ interface NavbarProps {
 
 function Navbar({ handleSearch }:NavbarProps) {
   return (
-    <nav className=" bg-primary">
+    <nav className=" bg-third">
       <div className="container">
         {/* --profile-- */}
         <ProfileMemo />

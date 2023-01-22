@@ -6,7 +6,7 @@ function Profile() {
   const currentUser = useCurrentUser((state) => state.currentUser);
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center ">
       <div className="flex pt-2 items-center">
         <img src={currentUser.photoURL || ''} alt="" className="w-[80px] h-[80px] object-cover" />
         <div className="ml-2">

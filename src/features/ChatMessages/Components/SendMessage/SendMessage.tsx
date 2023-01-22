@@ -29,9 +29,9 @@ function SendMessage() {
       {
         img ? (<ImageSelect handleClick={resetImage} />) : null
       }
-      <div className="bg-white shadow-md h-[70px] mb-0 w-full z-20">
+      <div className="bg-white shadow-md h-[70px] mb-0 w-full z-40">
         <div className="container">
-          <div className="flex justify-between h-[70px] items-center">
+          <div className="flex justify-between h-[70px] items-center z-40">
             <form onSubmit={sendMessage} className="flex items-center flex-1">
               {/* --search input-- */}
               <label htmlFor="write" className="flex w-full  h-[30px] justify-start items-center rounded-xl  py-6 px-2">
