@@ -15,7 +15,7 @@ function ChatMessages() {
       {
         Object.keys(selectUserChat).length > 1 ? (
           <div className="relative">
-            <img src={background} alt="" className="absolute -z-10 top-0 left-0 w-full h-full opacity-[0.5]" />
+            <img src={background} alt="" className="absolute -z-10 top-0 left-0 w-full h-full opacity-[0.5] object-cover" />
             <MessagesList />
             <SendMessage />
           </div>

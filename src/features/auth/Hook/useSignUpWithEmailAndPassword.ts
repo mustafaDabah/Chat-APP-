@@ -2,6 +2,7 @@ import { Auth, createUserWithEmailAndPassword, updateProfile } from 'firebase/au
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useLocalStorage from '../../../Hook/useLocalStorage';
 import { defaultAvatar } from '../../../utils/DefaultAvatar';
 import { UserInputsDataType, User } from '../../../utils/Types/registerTypes';
 import useAddUser from './useAddUser';
@@ -10,6 +11,7 @@ const useSignUpWithEmailAndPassword = (auth: Auth) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const { addUserToDatabase } = useAddUser();
+  const { setValue } = useLocalStorage('currentUser', {});
 
   const signUpWithEmailAndPassword = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const useSignUpWithEmailAndPassword = (auth: Auth) => {
 
     try {
       const { user: currentUser } = await createUserWithEmailAndPassword(auth, email, password);
+      setValue(currentUser);
       setUser(currentUser);
       // update user name and avatar photo
       await updateProfile(currentUser, {

@@ -2,10 +2,12 @@ import { Auth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useCallback, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useLocalStorage from '../../../Hook/useLocalStorage';
 import { UserInputsDataType } from '../../../utils/Types/registerTypes';
 
 const useSignInWithEmailAndPassword = (auth: Auth) => {
   const navigate = useNavigate();
+  const { setValue } = useLocalStorage('currentUser', {});
 
   const handleSignInWithEmailAndPassword = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,7 +23,13 @@ const useSignInWithEmailAndPassword = (auth: Auth) => {
     const { password, email } = userInputsData;
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed in
+          const { user } = userCredential;
+          setValue(user);
+        // ...
+        });
       navigate('/');
     } catch (err) {
       toast.error((err as Error).message);

@@ -1,10 +1,9 @@
 import React from 'react';
-import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 import existIcon from '../../../../assets/images/exist.svg';
 import arrowBack from '../../../../assets/images/arrow-left.svg';
 import { ButtonWithIconMemo } from '../../../../PublicComponents';
 import { useStore } from '../../../../store/store';
-import { auth } from '../../../../firebase';
 import { useMobileScreen } from '../../../../store/mobileScreen';
 import { useCurrentUser } from '../../../../store/currentUser';
 
@@ -12,10 +11,13 @@ function Navbar() {
   const { resetCurrentUser } = useCurrentUser();
   const { selectUserChat } = useStore();
   const resetIsSelectUser = useMobileScreen((state) => state.resetIsSelectUser);
+  const navigate = useNavigate();
 
   const logout = () => {
-    signOut(auth);
     resetCurrentUser();
+    // signOut(auth);
+    localStorage.removeItem('currentUser');
+    navigate('/login');
   };
 
   return (

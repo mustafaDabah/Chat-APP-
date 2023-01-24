@@ -1,43 +1,29 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { auth } from './firebase';
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import { useCurrentUser } from './store/currentUser';
+import { PrivateRoute } from './PublicComponents';
+import Test from './pages/Test';
+import useLocalStorage from './Hook/useLocalStorage';
 
 function App() {
-  const { setCurrentUser, currentUser } = useCurrentUser();
+  const { setCurrentUser } = useCurrentUser();
+  const { storedValue } = useLocalStorage('currentUser');
 
-  const [usert, setUsert] = useState(true);
-
-  useLayoutEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // @ts-ignore
-        setUsert(false);
-        setCurrentUser(user);
-      }
-    });
-    // setFirst(true);
-    return () => unsubscribe();
-  }, [currentUser]);
-
-  console.log(Object.keys(currentUser).length > 0);
-  // element={Object.keys(currentUser).length <= 0 ? <Navigate to="/login" /> : <div>hello </div>}
+  useEffect(() => {
+    setCurrentUser(storedValue);
+  }, [storedValue]);
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={Object.keys(currentUser).length <= 0 ? <LogIn /> : <Home />}
-      />
-      <Route
-        path="/login"
-        element={<LogIn />}
-      />
+      <Route path="/" element={<PrivateRoute />}>
+        <Route path="/" element={<Home />} />
+      </Route>
+      <Route path="/login" element={<LogIn />} />
       <Route path="/sign-up" element={<Register />} />
+      <Route path="/test" element={<Test />} />
     </Routes>
   );
 }

@@ -1,27 +1,13 @@
-import { Navigate } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth';
-import { useEffect } from 'react';
-import { useCurrentUser } from '../../store/currentUser';
-import { auth } from '../../firebase';
+import { Navigate, Outlet } from 'react-router-dom';
+import useLocalStorage from '../../Hook/useLocalStorage';
 
-interface PropsPrivateRoute {
-  children: JSX.Element;
-}
+function PrivateRoute() {
+  const { storedValue } = useLocalStorage('currentUser');
 
-function PrivateRoute({ children }:PropsPrivateRoute) {
-  const { setCurrentUser, currentUser } = useCurrentUser();
+  console.log(Object.keys(storedValue || {}).length !== 0);
+  // console.log(currentUser);
 
-  console.log(Object.keys(currentUser).length);
-  console.log(Object.keys(currentUser).length);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) setCurrentUser(user);
-    });
-    return () => unsubscribe();
-  }, [currentUser]);
-
-  return Object.keys(currentUser).length > 0 ? children : <Navigate to="/login" replace />;
+  return Object.keys(storedValue || {}).length !== 0 ? <Outlet /> : <Navigate to="/login" />;
 }
 export default PrivateRoute;
 
