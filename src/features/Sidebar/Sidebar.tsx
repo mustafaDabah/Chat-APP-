@@ -7,7 +7,7 @@ function Sidebar() {
   const isSelectUser = useMobileScreen((state) => state.isSelectUser);
 
   return (
-    <section className={`bg-primary min-h-screen z-10 w-full lg:w-[30%] ${isSelectUser ? 'hidden' : 'block'} lg:block animate-fadeInLeft`}>
+    <section className={`bg-primary min-h-screen z-10 w-full lg:w-[35%] ${isSelectUser ? 'hidden' : 'block'} lg:block animate-fadeInLeft`}>
       <NavbarMemo handleSearch={handleSearch} />
       <AllUserListMemo users={users} />
       <DirectMessageListMemo />

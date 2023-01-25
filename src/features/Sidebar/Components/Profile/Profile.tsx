@@ -1,9 +1,11 @@
 import React from 'react';
 import editIcon from '../../../../assets/images/edit.svg';
 import { useCurrentUser } from '../../../../store/currentUser';
+import { useMobileScreen } from '../../../../store/mobileScreen';
 
 function Profile() {
   const currentUser = useCurrentUser((state) => state.currentUser);
+  const setUserSettings = useMobileScreen((state) => state.setUserSettings);
 
   return (
     <div className="flex justify-between items-center ">
@@ -14,7 +16,11 @@ function Profile() {
           <h3 className="text-gray-400 italic text-xs md:text-sm">{currentUser.email}</h3>
         </div>
       </div>
-      <button type="button" className="bg-third w-[50px] h-[50px] rounded-full flex justify-center items-center">
+      <button
+        type="button"
+        onClick={setUserSettings}
+        className="bg-third w-[50px] h-[50px] rounded-full flex justify-center items-center"
+      >
         <img src={editIcon} alt="" className="w-[25px]" />
       </button>
     </div>

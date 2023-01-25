@@ -11,7 +11,7 @@ interface Action {
   setChatId:(chatId: State['chatId']) => void
 }
 
-export const useStore = create<State & Action>((set, get) => ({
+export const useStore = create<State & Action>((set) => ({
   selectUserChat: {} as State['selectUserChat'],
   setUserChat: (user) => set({ selectUserChat: user }),
   chatId: '',

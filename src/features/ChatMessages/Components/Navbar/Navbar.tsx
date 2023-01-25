@@ -15,7 +15,6 @@ function Navbar() {
 
   const logout = () => {
     resetCurrentUser();
-    // signOut(auth);
     localStorage.removeItem('currentUser');
     navigate('/login');
   };

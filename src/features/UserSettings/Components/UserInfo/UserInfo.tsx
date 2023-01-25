@@ -16,7 +16,7 @@ function UserInfo() {
   return (
     <form>
       <div className="container">
-        <div className="relative pt-3 rounded-md shadow-sm">
+        <div className="relative pt-3 rounded-md shadow-sm ">
           <input
             type="text"
             // value={newName}
@@ -27,7 +27,7 @@ function UserInfo() {
             <img src={editIcon} className="w-4" alt="" />
           </div>
         </div>
-        <button type="submit" className="mt-2 px-4 py-2 font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo active:bg-indigo-800">
+        <button type="submit" className="mt-4 px-4 py-2 font-medium text-white bg-secondary w-full uppercase rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo active:bg-indigo-800">
           Update
         </button>
       </div>

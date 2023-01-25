@@ -16,10 +16,10 @@ module.exports = {
         },
       },
       colors: {
-        primary: '#1a2c3c',
-        secondary: '#3c5c7a',
-        third: '#223749',
-        forth: '#f0f8ff',
+        primary: '#1c114d',
+        secondary: '#645CBB',
+        third: '#291c63',
+        forth: '#f5f3ff',
       },
       keyframes: {
         fadeInRight: {
