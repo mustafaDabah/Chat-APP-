@@ -14,7 +14,7 @@ function User({ user }:UserProps) {
     <button
       onClick={setChat}
       type="button"
-      className="relative flex justify-start items-center px-2 mt-1"
+      className="relative flex justify-start items-center mt-1"
     >
       <Avatar
         imageSrc={user.photoURL}

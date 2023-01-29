@@ -28,6 +28,7 @@ const useSignInWithEmailAndPassword = (auth: Auth) => {
         // Signed in
           const { user } = userCredential;
           setValue(user);
+          console.log(user);
         // ...
         });
       navigate('/');

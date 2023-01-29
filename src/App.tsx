@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
@@ -7,14 +8,21 @@ import { useCurrentUser } from './store/currentUser';
 import { PrivateRoute } from './PublicComponents';
 import Test from './pages/Test';
 import useLocalStorage from './Hook/useLocalStorage';
+import { auth } from './firebase';
 
 function App() {
-  const { setCurrentUser } = useCurrentUser();
-  const { storedValue } = useLocalStorage('currentUser');
+  const { setCurrentUser, currentUser } = useCurrentUser();
 
   useEffect(() => {
-    setCurrentUser(storedValue);
-  }, [storedValue]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('Auth', user);
+      setCurrentUser(user as User);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [currentUser]);
 
   return (
     <Routes>

@@ -20,9 +20,9 @@ function ChatMessages() {
             <SendMessage />
           </div>
         ) : (
-          <div className="flex justify-center items-center flex-col pt-10">
+          <div className="flex justify-center items-center flex-col min-h-screen">
             <img src={ImgIllustrator} className="w-1/2" alt="" />
-            <h3 className="text-primary text-center capitalize text-xl font-semibold py-6">please select user to start chat</h3>
+            <h3 className="text-secondary text-center capitalize text-xl font-semibold py-6">please select user to start chat</h3>
           </div>
         )
       }

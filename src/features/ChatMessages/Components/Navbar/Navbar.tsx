@@ -9,7 +9,7 @@ import { useCurrentUser } from '../../../../store/currentUser';
 
 function Navbar() {
   const { resetCurrentUser } = useCurrentUser();
-  const { selectUserChat } = useStore();
+  const { selectUserChat, resetUserChat } = useStore();
   const resetIsSelectUser = useMobileScreen((state) => state.resetIsSelectUser);
   const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ function Navbar() {
     resetCurrentUser();
     localStorage.removeItem('currentUser');
     navigate('/login');
+    resetUserChat();
   };
 
   return (

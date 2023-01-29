@@ -1,9 +1,12 @@
 import { Timestamp } from 'firebase/firestore';
 
+export type ImageSource = Blob | ArrayBuffer | File | Uint8Array | undefined
+
 export interface UserInputsDataType {
     username?: string;
     password: string;
     email: string;
+    photoURL?:ImageSource
 }
 
 export interface User {

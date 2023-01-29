@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../../firebase';
 import { Alert } from '../../../PublicComponents';
 import useSignUpWithEmailAndPassword from '../Hook/useSignUpWithEmailAndPassword';
 import SignUpImage from '../../../assets/images/sign-up.svg';
+import uploadImage from '../../../assets/images/uploadIcon.svg';
+
+type ImageSource = Blob | ArrayBuffer | File | Uint8Array
 
 function SignUp() {
-  const { signUpWithEmailAndPassword, user } = useSignUpWithEmailAndPassword(auth);
-  console.log(user);
+  const { signUpWithEmailAndPassword } = useSignUpWithEmailAndPassword(auth);
+  const [image, setImage] = useState<ImageSource | null>(null);
+
+  const handleChange = async (event :React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) setImage(event.target.files[0]);
+  };
 
   return (
     <div className="container">
@@ -44,6 +51,25 @@ function SignUp() {
             placeholder="password"
             className="p-3 mb-3 border-spacing-1 border-2 border-solid rounded-md w-full border-gray-400 placeholder-shown:capitalize"
           />
+          {/* ---user profile picture-- */}
+          <div className="flex justify-between items-center w-full relative ">
+            {image ? (
+            // @ts-ignore
+              <img src={URL.createObjectURL(image)} alt="Profile preview" className="w-[80px] h-[80px] rounded-full object-cover" />
+            ) : (
+              <div className="w-[80px] h-[80px] rounded-full bg-secondary flex justify-center items-center">
+                <img src={uploadImage} className="w-[40px] h-[40px]  object-cover " alt="" />
+              </div>
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              className="opacity-0 cursor-pointer absolute w-[80px] h-[80px] bg-slate-600 z-10 top-0 left-0"
+              onChange={handleChange}
+              name="picture"
+            />
+            <h4 className="text-xl font-medium capitalize mb-5 text-secondary">upload  profile picture </h4>
+          </div>
           <button
             className="bg-primary w-full rounded-md text-center p-3 text-white mt-3"
             type="submit"

@@ -1,14 +1,13 @@
 import { collection, DocumentData, getDocs } from 'firebase/firestore';
 import { useCallback, useEffect, useState } from 'react';
 import { db } from '../../../firebase';
-import { useCurrentUser } from '../../../store/currentUser';
+import useLocalStorage from '../../../Hook/useLocalStorage';
 
 function useGetUsers() {
   const [users, setUsers] = useState<DocumentData[]>([]);
-  const currentUser = useCurrentUser((state) => state.currentUser);
+  const { storedValue: currentUser } = useLocalStorage('currentUser');
 
   const getUsers = useCallback(async () => {
-    console.log('users');
     const querySnapshot = await getDocs(collection(db, 'users'));
     const usersQuery = querySnapshot.docs.map((doc) => doc.data());
     // filter userQuery from current user
@@ -16,11 +15,9 @@ function useGetUsers() {
     setUsers(usersData);
   }, []);
 
-  console.log(users);
-
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [currentUser]);
 
   const handleSearch = (searchValue: string) => {
     if (!searchValue.length) {
