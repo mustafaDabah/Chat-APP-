@@ -4,7 +4,7 @@ import { db } from '../../../firebase';
 import { useCurrentUser } from '../../../store/currentUser';
 import { useMobileScreen } from '../../../store/mobileScreen';
 import { useStore } from '../../../store/store';
-import { UserChatTypes } from '../../../utils/Types/registerTypes';
+import { UserChatTypes } from '../../../utils/Types/types';
 
 function useSetChat(selectUser:UserChatTypes) {
   const { currentUser } = useCurrentUser();

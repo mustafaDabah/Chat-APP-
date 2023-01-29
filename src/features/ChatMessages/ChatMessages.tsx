@@ -8,7 +8,6 @@ function ChatMessages() {
   const selectUserChat = useStore((state) => state.selectUserChat);
   const isSelectUser = useMobileScreen((state) => state.isSelectUser);
 
-  // hidden z-20 absolute
   return (
     <div className={`bg-forth w-full min-h-screen lg:block -z-0 ${!isSelectUser ? 'hidden' : 'block'} animate-fadeInRight`}>
       <Navbar />

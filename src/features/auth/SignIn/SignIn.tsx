@@ -6,7 +6,7 @@ import useSignInWithEmailAndPassword from '../Hook/useSignInWithEmailAndPassword
 import SignInImage from '../../../assets/images/sign.svg';
 
 function SignIn() {
-  const { handleSignInWithEmailAndPassword } = useSignInWithEmailAndPassword(auth);
+  const { handleSignInWithEmailAndPassword, loading } = useSignInWithEmailAndPassword(auth);
 
   return (
     <div className="container">
@@ -37,11 +37,13 @@ function SignIn() {
             className="p-3 mb-3 border-spacing-1 border-2 border-solid rounded-md w-full border-gray-400 placeholder-shown:capitalize"
           />
           <button
-            className="bg-primary w-full rounded-md text-center p-3 text-white mt-3"
+            className="bg-primary w-full  capitalize rounded-md text-center p-3 text-white mt-3"
             type="submit"
-          >sign In
+            disabled={loading}
+          >
+            {loading ? 'loading...' : 'sign in'}
           </button>
-          <Link to="/sign-up" className="bg-primary w-full rounded-md text-center p-3 text-white mt-3">sign up</Link>
+          <Link to="/sign-up" className="bg-primary capitalize w-full rounded-md text-center p-3 text-white mt-3">sign up</Link>
         </form>
       </div>
       <Link to="/">home</Link>

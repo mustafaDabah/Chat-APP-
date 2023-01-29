@@ -1,24 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import existIcon from '../../../../assets/images/exist.svg';
 import arrowBack from '../../../../assets/images/arrow-left.svg';
 import { ButtonWithIconMemo } from '../../../../PublicComponents';
 import { useStore } from '../../../../store/store';
 import { useMobileScreen } from '../../../../store/mobileScreen';
-import { useCurrentUser } from '../../../../store/currentUser';
+import useReset from '../../../../Hook/useReset';
 
 function Navbar() {
-  const { resetCurrentUser } = useCurrentUser();
-  const { selectUserChat, resetUserChat } = useStore();
+  const selectUserChat = useStore((state) => state.selectUserChat);
   const resetIsSelectUser = useMobileScreen((state) => state.resetIsSelectUser);
-  const navigate = useNavigate();
-
-  const logout = () => {
-    resetCurrentUser();
-    localStorage.removeItem('currentUser');
-    navigate('/login');
-    resetUserChat();
-  };
+  const logout = useReset();
 
   return (
     <nav className=" bg-white shadow-sm">

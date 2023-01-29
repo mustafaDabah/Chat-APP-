@@ -1,5 +1,4 @@
 import React from 'react';
-import menuIcon from '../../../../assets/images/menu.svg';
 import verticalMenuIcon from '../../../../assets/images/vertical menu.svg';
 import SearchInput from '../SearchInput/SearchInput';
 import { ProfileMemo } from '../Profile/Profile';

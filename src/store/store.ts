@@ -1,5 +1,5 @@
 import create from 'zustand';
-import { UserChatTypes } from '../utils/Types/registerTypes';
+import { UserChatTypes } from '../utils/Types/types';
 
 interface State {
   selectUserChat: UserChatTypes,

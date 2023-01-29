@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from '../../../../PublicComponents';
-import { UserChatTypes } from '../../../../utils/Types/registerTypes';
+import { UserChatTypes } from '../../../../utils/Types/types';
 import useSetChat from '../../Hooks/useSetChat';
 
 interface UserProps {

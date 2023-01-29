@@ -1,5 +1,4 @@
 import React from 'react';
-// import { SignIn } from '../features';
 import SignIn from '../features/auth/SignIn/SignIn';
 
 function LogIn() {

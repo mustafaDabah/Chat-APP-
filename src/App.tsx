@@ -6,8 +6,6 @@ import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import { useCurrentUser } from './store/currentUser';
 import { PrivateRoute } from './PublicComponents';
-import Test from './pages/Test';
-import useLocalStorage from './Hook/useLocalStorage';
 import { auth } from './firebase';
 
 function App() {
@@ -15,7 +13,6 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log('Auth', user);
       setCurrentUser(user as User);
     });
 
@@ -31,7 +28,6 @@ function App() {
       </Route>
       <Route path="/login" element={<LogIn />} />
       <Route path="/sign-up" element={<Register />} />
-      <Route path="/test" element={<Test />} />
     </Routes>
   );
 }

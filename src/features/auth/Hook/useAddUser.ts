@@ -1,7 +1,7 @@
 import { doc, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { db } from '../../../firebase';
-import { User } from '../../../utils/Types/registerTypes';
+import { User } from '../../../utils/Types/types';
 
 function useAddUser() {
   const addUserToDatabase = async (user:User) => {

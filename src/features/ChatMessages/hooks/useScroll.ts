@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { MessageType } from '../../../utils/Types/registerTypes';
+import { MessageType } from '../../../utils/Types/types';
 
 function useScroll(message: MessageType['message']) {
   const ref = useRef<HTMLDivElement>(null);

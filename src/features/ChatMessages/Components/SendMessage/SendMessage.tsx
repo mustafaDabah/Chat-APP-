@@ -7,7 +7,7 @@ import ImageSelect from '../ImageSelect/ImageSelect';
 
 function SendMessage() {
   const [text, setText] = useState('');
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState<File | null>(null);
   const { handleSendMessage } = useSendMessage(img, text);
 
   const sendMessage = (e: FormEvent) => {
@@ -17,9 +17,8 @@ function SendMessage() {
     setImg(null);
   };
 
-  const handleImg = (e: FormEvent) => {
-    // @ts-ignore
-    setImg((e.target as HTMLInputElement).files[0]);
+  const handleImg = (e:React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setImg(e.target.files[0]);
   };
 
   const resetImage = () => setImg(null);

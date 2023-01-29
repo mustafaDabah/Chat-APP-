@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useLocalStorage from '../../../Hook/useLocalStorage';
 import { defaultAvatar } from '../../../utils/DefaultAvatar';
-import { UserInputsDataType, User, ImageSource } from '../../../utils/Types/registerTypes';
+import { UserInputsDataType, User, ImageSource } from '../../../utils/Types/types';
 import useAddUser from './useAddUser';
 import { storage } from '../../../firebase';
 
 const useSignUpWithEmailAndPassword = (auth: Auth) => {
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { addUserToDatabase } = useAddUser();
   const { setValue } = useLocalStorage('currentUser', {});
@@ -20,7 +21,6 @@ const useSignUpWithEmailAndPassword = (auth: Auth) => {
     const inputsData = new FormData(e.currentTarget);
 
     const formValues = Object.fromEntries(inputsData.entries());
-    console.log(formValues);
 
     const userInputsData: UserInputsDataType = {
       username: formValues.username as string,
@@ -35,6 +35,7 @@ const useSignUpWithEmailAndPassword = (auth: Auth) => {
     const displayName: string = username || '';
     const storageRef = ref(storage, `${displayName + date}`);
 
+    setLoading(true);
     try {
       const { user: currentUser } = await createUserWithEmailAndPassword(auth, email, password);
       setValue(currentUser);
@@ -64,12 +65,14 @@ const useSignUpWithEmailAndPassword = (auth: Auth) => {
         photoURL: currentUser.photoURL as string,
       };
       addUserToDatabase(userData);
+      setLoading(false);
     } catch (error) {
       toast.error((error as Error).message);
+      setLoading(false);
     }
   };
 
-  return { signUpWithEmailAndPassword, user };
+  return { signUpWithEmailAndPassword, user, loading };
 };
 
 export default useSignUpWithEmailAndPassword;

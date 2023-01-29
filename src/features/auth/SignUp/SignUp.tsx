@@ -9,7 +9,7 @@ import uploadImage from '../../../assets/images/uploadIcon.svg';
 type ImageSource = Blob | ArrayBuffer | File | Uint8Array
 
 function SignUp() {
-  const { signUpWithEmailAndPassword } = useSignUpWithEmailAndPassword(auth);
+  const { signUpWithEmailAndPassword, loading } = useSignUpWithEmailAndPassword(auth);
   const [image, setImage] = useState<ImageSource | null>(null);
 
   const handleChange = async (event :React.ChangeEvent<HTMLInputElement>) => {
@@ -71,11 +71,12 @@ function SignUp() {
             <h4 className="text-xl font-medium capitalize mb-5 text-secondary">upload  profile picture </h4>
           </div>
           <button
-            className="bg-primary w-full rounded-md text-center p-3 text-white mt-3"
+            className="bg-primary w-full rounded-md capitalize text-center p-3 text-white mt-3"
             type="submit"
-          >sign up
+          >
+            {loading ? 'loading...' : 'sign up'}
           </button>
-          <Link to="/login" className="bg-primary w-full rounded-md text-center p-3 text-white mt-3">sign in</Link>
+          <Link to="/login" className="bg-primary w-full capitalize rounded-md text-center p-3 text-white mt-3">sign in</Link>
         </form>
       </div>
     </div>

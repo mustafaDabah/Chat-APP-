@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChatMessages, Sidebar, UserSettings } from '../features';
+import { ChatMessages, Sidebar } from '../features';
 import { useMobileScreen } from '../store/mobileScreen';
 
 function Home() {
@@ -8,7 +8,6 @@ function Home() {
     <div className="flex justify-between relative overflow-hidden">
       <Sidebar />
       <ChatMessages />
-      <UserSettings />
     </div>
   );
 }

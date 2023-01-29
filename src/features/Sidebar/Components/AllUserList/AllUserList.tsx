@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, UserChatTypes } from '../../../../utils/Types/registerTypes';
+import { User, UserChatTypes } from '../../../../utils/Types/types';
 import { UserMemo } from '../User/User';
 
 interface SliderTwoProps {

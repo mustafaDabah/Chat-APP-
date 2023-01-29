@@ -1,13 +1,12 @@
 import React from 'react';
-import editIcon from '../../../../assets/images/edit.svg';
+import { ButtonWithIconMemo } from '../../../../PublicComponents';
 import { useCurrentUser } from '../../../../store/currentUser';
-import { useMobileScreen } from '../../../../store/mobileScreen';
+import existIcon from '../../../../assets/images/exist.svg';
+import useReset from '../../../../Hook/useReset';
 
 function Profile() {
   const currentUser = useCurrentUser((state) => state.currentUser);
-  const setUserSettings = useMobileScreen((state) => state.setUserSettings);
-
-  console.log(currentUser);
+  const logout = useReset();
 
   return (
     <div className="flex justify-between items-center ">
@@ -18,13 +17,11 @@ function Profile() {
           <h3 className="text-gray-400 italic text-xs md:text-sm">{currentUser.email}</h3>
         </div>
       </div>
-      <button
-        type="button"
-        onClick={setUserSettings}
-        className="bg-third w-[50px] h-[50px] rounded-full flex justify-center items-center"
-      >
-        <img src={editIcon} alt="" className="w-[25px]" />
-      </button>
+      <ButtonWithIconMemo
+        icon={existIcon}
+        name="exist icon"
+        handelClick={logout}
+      />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { Timestamp } from 'firebase/firestore';
 import React from 'react';
 import { Avatar } from '../../../../PublicComponents';
 import { getTime } from '../../../../utils/getTime';
-import { UserChatTypes } from '../../../../utils/Types/registerTypes';
+import { UserChatTypes } from '../../../../utils/Types/types';
 import useSetChat from '../../Hooks/useSetChat';
 import { useStore } from '../../../../store/store';
 
