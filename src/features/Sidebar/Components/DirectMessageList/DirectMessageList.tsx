@@ -5,18 +5,20 @@ import { UserMessageMemo } from '../UserMessage/UserMessage';
 function DirectMessageList() {
   const chats = useGetUserChats();
 
-  const displayUsers = chats !== undefined ? (
-    Object.keys(chats).map((chat) => (
-      <UserMessageMemo
-        image={chats[chat].userInfo.photoURL}
-        name={chats[chat].userInfo.displayName}
-        uid={chats[chat].userInfo.uid}
-        lastMessage={chats[chat].lastMessage}
-        key={chats[chat].userInfo.uid}
-        time={chats[chat].date}
-      />
-    ))
-  ) : null;
+  const displayUsers = chats
+    ? Object.values(chats)
+      .sort((a, b) => b.date - a.date)
+      .map(({ userInfo, lastMessage, date }) => (
+        <UserMessageMemo
+          image={userInfo.photoURL}
+          name={userInfo.displayName}
+          uid={userInfo.uid}
+          lastMessage={lastMessage}
+          key={userInfo.uid}
+          time={date}
+        />
+      ))
+    : null;
 
   return (
     <div className="container overflow-auto h-fit lg:h-[350px]">
