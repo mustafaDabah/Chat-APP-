@@ -49,7 +49,6 @@ function SignIn() {
           <Link to="/sign-up" className="bg-primary capitalize w-full rounded-md text-center p-3 text-white mt-3">sign up</Link>
         </form>
       </div>
-      <Link to="/">home</Link>
     </div>
   );
 }
