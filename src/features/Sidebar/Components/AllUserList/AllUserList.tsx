@@ -8,7 +8,7 @@ interface SliderTwoProps {
 
 function AllUserList({ users }: SliderTwoProps) {
   return (
-    <div className="py-2 h-fit lg:h-[350px] overflow-auto">
+    <div className="py-2 h-fit lg:h-[300px] overflow-auto">
       <div className="container">
         <h3 className="text-gray-300 text-sm mt-2 pb-3 uppercase font-semibold">All users </h3>
         <div>
