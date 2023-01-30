@@ -1,5 +1,4 @@
 import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { db } from '../../../firebase';
 import { useCurrentUser } from '../../../store/currentUser';
@@ -12,7 +11,6 @@ function useSetChat(selectUser:UserChatTypes) {
   const { setUserChat, setChatId } = useStore();
   const combinedId = currentUser.uid > selectUser.uid ? currentUser.uid + selectUser.uid : selectUser.uid + currentUser.uid;
   const setIsSelectUser = useMobileScreen((state) => state.setIsSelectUser);
-  const navigate = useNavigate();
 
   const setChat = async () => {
     try {
@@ -49,7 +47,6 @@ function useSetChat(selectUser:UserChatTypes) {
       };
       setUserChat(userInfo);
       setIsSelectUser();
-      navigate(`#userId=${selectUser.uid}`);
     } catch (error) {
       toast.error((error as Error).message);
     }
