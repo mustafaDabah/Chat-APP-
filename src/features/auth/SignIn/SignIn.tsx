@@ -21,16 +21,19 @@ function SignIn() {
           <h3 className="text-4xl mb-5 text-secondary text-left w-full">Welcome Back :) </h3>
           <p className="capitalize text-gray-600 mb-5">Real Time Chat app developed my mustafa dabah using React Firebase.</p>
           <h4 className="text-lg  mb-5 text-left w-full">Sign In</h4>
+          <p className="text-sm text-gray-500 capitalize text-left mb-5 w-full">this is email for login if you dont like to sign up </p>
           <Alert />
           <input
             type="email"
             name="email"
             placeholder="email"
+            defaultValue="test@gmail.com"
             required
             className="p-3 mb-3 border-spacing-1 border-2 border-solid rounded-md w-full border-gray-400 placeholder-shown:capitalize"
           />
           <input
             type="password"
+            defaultValue="test@gmail.com"
             required
             name="password"
             placeholder="password"
