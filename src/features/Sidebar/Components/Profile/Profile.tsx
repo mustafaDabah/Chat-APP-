@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonWithIconMemo } from '../../../../PublicComponents';
 import { useCurrentUser } from '../../../../store/currentUser';
 import existIcon from '../../../../assets/images/exist.svg';
-import useReset from '../../../../Hook/useReset';
+import useReset from '../../../../Hooks/useReset';
 
 function Profile() {
   const currentUser = useCurrentUser((state) => state.currentUser);

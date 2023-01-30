@@ -3,7 +3,7 @@ import { useState, FormEvent } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useLocalStorage from '../../../Hook/useLocalStorage';
+import useLocalStorage from '../../../Hooks/useLocalStorage';
 import { defaultAvatar } from '../../../utils/DefaultAvatar';
 import { UserInputsDataType, User, ImageSource } from '../../../utils/Types/types';
 import useAddUser from './useAddUser';

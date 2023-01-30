@@ -2,7 +2,7 @@ import { useCallback, FormEvent, useState } from 'react';
 import { Auth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useLocalStorage from '../../../Hook/useLocalStorage';
+import useLocalStorage from '../../../Hooks/useLocalStorage';
 import { UserInputsDataType } from '../../../utils/Types/types';
 
 const useSignInWithEmailAndPassword = (auth: Auth) => {

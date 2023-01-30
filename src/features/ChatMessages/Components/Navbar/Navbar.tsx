@@ -4,7 +4,7 @@ import arrowBack from '../../../../assets/images/arrow-left.svg';
 import { ButtonWithIconMemo } from '../../../../PublicComponents';
 import { useStore } from '../../../../store/store';
 import { useMobileScreen } from '../../../../store/mobileScreen';
-import useReset from '../../../../Hook/useReset';
+import useReset from '../../../../Hooks/useReset';
 
 function Navbar() {
   const selectUserChat = useStore((state) => state.selectUserChat);

@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import useLocalStorage from '../../Hook/useLocalStorage';
+import useLocalStorage from '../../Hooks/useLocalStorage';
 
 function PrivateRoute() {
   const { storedValue } = useLocalStorage('currentUser');

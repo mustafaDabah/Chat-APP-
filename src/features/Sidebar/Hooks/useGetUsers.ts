@@ -1,7 +1,7 @@
 import { collection, DocumentData, getDocs } from 'firebase/firestore';
 import { useCallback, useEffect, useState } from 'react';
 import { db } from '../../../firebase';
-import useLocalStorage from '../../../Hook/useLocalStorage';
+import useLocalStorage from '../../../Hooks/useLocalStorage';
 
 function useGetUsers() {
   const [users, setUsers] = useState<DocumentData[]>([]);
