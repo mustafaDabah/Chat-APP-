@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useLocalStorage from '../../../Hooks/useLocalStorage';
 import { UserInputsDataType } from '../../../utils/Types/types';
+import { useMobileScreen } from '../../../store/mobileScreen';
 
 const useSignInWithEmailAndPassword = (auth: Auth) => {
   const navigate = useNavigate();
   const { setValue } = useLocalStorage('currentUser', {});
   const [loading, setLoading] = useState(false);
+  const resetIsSelectUser = useMobileScreen((state) => state.resetIsSelectUser);
 
   const handleSignInWithEmailAndPassword = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,6 +35,7 @@ const useSignInWithEmailAndPassword = (auth: Auth) => {
         });
       navigate('/');
       setLoading(false);
+      resetIsSelectUser();
     } catch (err) {
       toast.error((err as Error).message);
       setLoading(false);
